@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, Button, View, Text, Image} from 'react-native';
 import {Color, FontFamily, FontSize, Border} from '../GlobalStyles';
 import Slider from '../components/Slider';
 
-const OnBoarding = () => {
+const OnBoarding = ({navigation}) => {
   return (
     <View style={[styles.onboarding01, styles.appbartopLayout]}>
       <Slider />
@@ -17,7 +17,11 @@ const OnBoarding = () => {
       </View>
       <View style={styles.buttonCenter}>
         <View style={styles.onboarding01Child}>
-          <Text style={[styles.getStarted]}>Get Started</Text>
+          <Text
+            style={[styles.getStarted]}
+            onPress={() => navigation.navigate('Splash')}>
+            Get Started
+          </Text>
         </View>
         <Text style={styles.alreadyHaveAnContainer}>
           <Text>Already Have An Acount?</Text>
