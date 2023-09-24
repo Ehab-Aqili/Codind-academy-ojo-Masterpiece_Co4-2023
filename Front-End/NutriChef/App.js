@@ -12,6 +12,4 @@ function App() {
   return <AppNavigation />;
 }
 
-
-
 export default App;
