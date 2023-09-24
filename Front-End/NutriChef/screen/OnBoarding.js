@@ -19,7 +19,7 @@ const OnBoarding = ({navigation}) => {
         <View style={styles.onboarding01Child}>
           <Text
             style={[styles.getStarted]}
-            onPress={() => navigation.navigate('Splash')}>
+            onPress={() => navigation.navigate('NextCard')}>
             Get Started
           </Text>
         </View>

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import AppNavigation from './components/AppNavigation';
+import AppNavigation from './Routes/AppNavigation';
 function App() {
   return <AppNavigation />;
 }
