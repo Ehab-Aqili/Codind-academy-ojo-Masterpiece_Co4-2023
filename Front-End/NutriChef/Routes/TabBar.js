@@ -8,6 +8,7 @@ import Splash from '../screen/Splash';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Image} from 'react-native';
+import SearchScreen from '../screen/SearchScreen';
 const Tab = createBottomTabNavigator();
 
 const TabBar = () => {
@@ -32,9 +33,9 @@ const TabBar = () => {
 
       <Tab.Screen
         name="Splash"
-        component={Splash}
+        component={SearchScreen}
         options={{
-          tabBarLabel: 'Splash',
+          tabBarLabel: 'Search',
           tabBarIcon: ({focused}) =>
             focused ? (
               <Image source={require('../assets/Search.png')} />
