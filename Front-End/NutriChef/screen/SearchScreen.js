@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {Text, StyleSheet, View, FlatList} from 'react-native';
+import {Text, StyleSheet, View, FlatList, ScrollView} from 'react-native';
 import React, {Component} from 'react';
 import SearchInput from '../components/SearchInput';
 import SearchCard from '../components/SearchCard';
@@ -14,15 +14,22 @@ const SearchScreen = () => {
   const products = [
     {
       id: 1,
-      imageUrl: 'https://domf5oio6qrcr.cloudfront.net/medialibrary/13503/bigstock-Health-food-selection-super-foods-fruits-veggies.jpg',
+      imageUrl:
+        'https://domf5oio6qrcr.cloudfront.net/medialibrary/13503/bigstock-Health-food-selection-super-foods-fruits-veggies.jpg',
       title: 'Product 1',
     },
     {
       id: 2,
-      imageUrl: 'https://domf5oio6qrcr.cloudfront.net/medialibrary/13503/bigstock-Health-food-selection-super-foods-fruits-veggies.jpg',
+      imageUrl:
+        'https://domf5oio6qrcr.cloudfront.net/medialibrary/13503/bigstock-Health-food-selection-super-foods-fruits-veggies.jpg',
       title: 'Product 2',
     },
-    // Add more products as needed
+    {
+      id: 3,
+      imageUrl:
+        'https://domf5oio6qrcr.cloudfront.net/medialibrary/13503/bigstock-Health-food-selection-super-foods-fruits-veggies.jpg',
+      title: 'Product 3',
+    },
   ];
 
   return (
@@ -32,15 +39,16 @@ const SearchScreen = () => {
         onSearch={handleSearch}
       />
       <Text style={styles.hotNow}>Hot Now</Text>
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={{ flexDirection: 'column' }}>
+      <ScrollView
+        horizontal
+        contentContainerStyle={styles.scrollViewContainer}
+        showsHorizontalScrollIndicator={false}>
+        {products.map(item => (
+          <View style={styles.cardContainer} key={item.id}>
             <SearchCard imageUrl={item.imageUrl} title={item.title} />
           </View>
-        )}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -55,6 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '900',
     paddingLeft: 10,
+  },
+  scrollViewContainer: {
+    flexDirection: 'row',
+  },
+  cardContainer: {
+    marginRight: 10,
   },
 });
 export default SearchScreen;

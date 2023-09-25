@@ -6,7 +6,7 @@ const SearchCard = ({imageUrl, title}) => {
   return (
     <View style={styles.cardContainer}>
       <Image source={{uri: imageUrl}} style={styles.image} />
-      <View style={styles.titleContainer}>
+      <View>
         <Text style={styles.title}>{title}</Text>
       </View>
     </View>
@@ -16,22 +16,19 @@ const SearchCard = ({imageUrl, title}) => {
 const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: '#fff',
-    borderRadius: 8,
+    borderRadius: 14,
     margin: 10,
-    padding: 10,
+    width: 200,
   },
   image: {
-    width: '70%',
-    height: '70%',
-    objectFit :'cover',
+    width: '100%',
     aspectRatio: 1,
-    borderRadius: 8,
-  },
-  titleContainer: {
-    marginTop: 10,
+    borderTopRightRadius: 14,
+    borderTopLeftRadius: 14,
   },
   title: {
-    fontSize: 16,
+    padding: 10,
+    fontSize: 24,
     fontWeight: 'bold',
   },
 });
