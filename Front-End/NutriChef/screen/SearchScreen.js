@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import {Text, StyleSheet, View, FlatList, ScrollView} from 'react-native';
+import {Text, StyleSheet, View, ScrollView} from 'react-native';
 import React, {Component} from 'react';
 import SearchInput from '../components/SearchInput';
 import SearchCard from '../components/SearchCard';
+import TrendingSearch from '../components/TrendingSearch';
 
 const SearchScreen = () => {
   const handleSearch = query => {
@@ -31,6 +32,24 @@ const SearchScreen = () => {
       title: 'Product 3',
     },
   ];
+  const link = [
+    {
+      id: 1,
+      linkText: 'best vegetable recipes',
+    },
+    {
+      id: 2,
+      linkText: 'best vegetable recipes',
+    },
+    {
+      id: 3,
+      linkText: 'best vegetable recipes',
+    },
+    {
+      id: 4,
+      linkText: 'best vegetable recipes',
+    },
+  ];
 
   return (
     <View style={styles.mainContainer}>
@@ -49,6 +68,10 @@ const SearchScreen = () => {
           </View>
         ))}
       </ScrollView>
+      <Text style={styles.hotNow}>Trending</Text>
+      {link.map(item => (
+        <TrendingSearch linkText={item.linkText} />
+      ))}
     </View>
   );
 };
@@ -59,8 +82,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   hotNow: {
-    marginTop: 10,
-    fontSize: 20,
+    marginVertical: 10,
+    fontSize: 24,
     fontWeight: '900',
     paddingLeft: 10,
   },
