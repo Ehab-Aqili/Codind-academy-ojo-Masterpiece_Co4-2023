@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: FontFamily.signikaRegular,
+    backgroundColor: Color.bordersBackgroundsWhiteBackground,
   },
   helloTxt: {
     alignItems: 'center',

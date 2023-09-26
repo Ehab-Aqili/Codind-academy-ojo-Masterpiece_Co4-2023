@@ -3,18 +3,18 @@ import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Color, FontSize} from '../GlobalStyles';
 
-const RecipesCard = () => {
+const RecipesCard = ({kcalNum, recipeName, recipeCategories, recipeImage}) => {
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const cardWidth = screenWidth * 0.85;
   const cardHeight = screenHeight * 0.17;
   return (
     <View style={[styles.container, {width: cardWidth, height: cardHeight}]}>
-      <Image source={require('../assets/ResipeOne.png')} />
-      <View style={{rowGap: 5}}>
-        <Text style={styles.kcal}>231Kal</Text>
-        <Text style={styles.RecipeName}>Chopped Spring Ramen</Text>
-        <Text style={styles.categories}>Scallions & tomatoes</Text>
+      <Image source={recipeImage} />
+      <View style={styles.cardText}>
+        <Text style={styles.kcal}>{kcalNum} Kcal</Text>
+        <Text style={styles.RecipeName}>{recipeName}</Text>
+        <Text style={styles.categories}>{recipeCategories}</Text>
       </View>
       <Image style={styles.heart} source={require('../assets/Heart.png')} />
     </View>
@@ -32,11 +32,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     columnGap: 30,
   },
+  cardText: {
+    rowGap: 5,
+    flexWrap: 'wrap',
+  },
   kcal: {
     color: Color.darkseagreen,
     fontSize: FontSize.size_sm,
   },
   RecipeName: {
+    flexWrap: 'wrap',
+    width: 150,
     fontSize: FontSize.size_lg,
   },
   categories: {
@@ -44,6 +50,5 @@ const styles = StyleSheet.create({
   },
   heart: {
     marginBottom: 70,
-    marginLeft: -50,
   },
 });

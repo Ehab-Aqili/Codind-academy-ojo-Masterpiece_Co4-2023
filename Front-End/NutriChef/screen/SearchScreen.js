@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import SearchInput from '../components/SearchInput';
 import SearchCard from '../components/SearchCard';
 import TrendingSearch from '../components/TrendingSearch';
+import {Color} from '../GlobalStyles';
 
 const SearchScreen = () => {
   const handleSearch = query => {
@@ -52,7 +53,11 @@ const SearchScreen = () => {
   ];
 
   return (
-    <View style={styles.mainContainer}>
+    <View
+      style={[
+        styles.mainContainer,
+        {backgroundColor: Color.bordersBackgroundsWhiteBackground},
+      ]}>
       <SearchInput
         placeholder="Search recipes, articles, people..."
         onSearch={handleSearch}
@@ -78,8 +83,9 @@ const SearchScreen = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 30,
+    paddingTop: 30,
     paddingHorizontal: 20,
+    paddingBottom: 150,
   },
   hotNow: {
     marginVertical: 10,

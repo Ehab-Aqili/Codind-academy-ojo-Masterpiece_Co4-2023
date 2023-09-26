@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, Dimensions, Text, TouchableOpacity } from 'react-native';
 
-const DualButton = () => {
+const DualButton = ({activeButton, setActiveButton}) => {
   // Get the screen dimensions
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
@@ -12,7 +12,6 @@ const DualButton = () => {
   const boxHeight = screenHeight * 0.08; // 10% of screen height
 
   // State to track the active button
-  const [activeButton, setActiveButton] = useState('Food');
 
   return (
     <View style={styles.main}>
