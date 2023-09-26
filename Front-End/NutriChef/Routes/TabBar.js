@@ -5,8 +5,6 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../screen/Home';
 import Splash from '../screen/Splash';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Image} from 'react-native';
 import SearchScreen from '../screen/SearchScreen';
 import FavoritesScreen from '../screen/FavoritesScreen';

@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
-import {StyleSheet, Button, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {Color, FontFamily, FontSize, Border} from '../GlobalStyles';
 import Slider from '../components/Slider';
+import CustomButton from '../components/CustomButton';
 
 const OnBoarding = ({navigation}) => {
   return (
@@ -16,13 +17,14 @@ const OnBoarding = ({navigation}) => {
         </View>
       </View>
       <View style={styles.buttonCenter}>
-        <View style={styles.onboarding01Child}>
-          <Text
-            style={[styles.getStarted]}
-            onPress={() => navigation.navigate('NextCard')}>
-            Get Started
-          </Text>
-        </View>
+        <CustomButton
+          ButtonTxt={'Get Started'}
+          event={() => {
+            console.log('Button pressed');
+            navigation.navigate('home');
+          }}
+        />
+
         <Text style={styles.alreadyHaveAnContainer}>
           <Text>Already Have An Acount?</Text>
           <Text style={styles.logIn1Typo}>Log In</Text>

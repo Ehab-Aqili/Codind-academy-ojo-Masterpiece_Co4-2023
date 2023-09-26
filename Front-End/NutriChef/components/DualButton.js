@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import {View, Dimensions, Text} from 'react-native';
+import React, { useState } from 'react';
+import { View, Dimensions, Text, TouchableOpacity } from 'react-native';
 
 const DualButton = () => {
   // Get the screen dimensions
@@ -10,27 +10,32 @@ const DualButton = () => {
   // Calculate dimensions based on screen size
   const boxWidth = screenWidth * 0.4; // 80% of screen width
   const boxHeight = screenHeight * 0.08; // 10% of screen height
-  const rectangleWidth = boxWidth;
-  const rectangleHeight = boxHeight;
+
+  // State to track the active button
+  const [activeButton, setActiveButton] = useState('Food');
 
   return (
     <View style={styles.main}>
-      <Text style={{fontSize: 24, fontWeight: 700}}>Favorites</Text>
+      <Text style={{ fontSize: 24, fontWeight: '700' }}>Favorites</Text>
       <View style={styles.box}>
-        <View
+        <TouchableOpacity
+          onPress={() => setActiveButton('Food')}
           style={[
             styles.rectangle,
-            {width: rectangleWidth, height: rectangleHeight},
-          ]}>
-          <Text style={styles.boxText}>Food</Text>
-        </View>
-        <View
+            { width: boxWidth, backgroundColor: activeButton === 'Food' ? '#ff9385' : '#fff8eb', height: boxHeight },
+          ]}
+        >
+          <Text style={[styles.boxText, { color: activeButton === 'Food' ? '#fff' : '#000' }]}>Food</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setActiveButton('Recipes')}
           style={[
             styles.rectangleSecond,
-            {width: rectangleWidth, height: rectangleHeight},
-          ]}>
-          <Text style={styles.boxText}>Recipes</Text>
-        </View>
+            { width: boxWidth, backgroundColor: activeButton === 'Recipes' ? '#ff9385' : '#fff8eb', height: boxHeight },
+          ]}
+        >
+          <Text style={[styles.boxText, { color: activeButton === 'Recipes' ? '#fff' : '#000' }]}>Recipes</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -49,7 +54,6 @@ const styles = {
   },
   rectangle: {
     marginTop: 30,
-    backgroundColor: '#ff9385',
     borderRadius: 16,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
@@ -58,7 +62,6 @@ const styles = {
   },
   rectangleSecond: {
     marginTop: 30,
-    backgroundColor: '#fff8eb',
     borderRadius: 16,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,

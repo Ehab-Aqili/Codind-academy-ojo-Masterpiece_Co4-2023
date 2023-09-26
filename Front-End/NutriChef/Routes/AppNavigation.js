@@ -19,7 +19,7 @@ const AppNavigation = () => {
         />
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen
-          name="NextCard"
+          name="home"
           component={TabBar}
           options={{headerShown: false}}
         />

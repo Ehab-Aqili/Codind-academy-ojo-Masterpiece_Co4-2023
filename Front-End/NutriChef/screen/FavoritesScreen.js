@@ -10,6 +10,7 @@ import React from 'react';
 import DualButton from '../components/DualButton';
 import CardCategories from '../components/CardCategories';
 import NotFound from '../components/NotFound';
+import RecipesCard from '../components/RecipesCard';
 
 const data = [
   {
@@ -78,6 +79,9 @@ const FavoritesScreen = () => {
           </TouchableOpacity>
         </View>
       )}
+      <View style={styles.cardContainer}>
+        <RecipesCard />
+      </View>
     </View>
   );
 };
