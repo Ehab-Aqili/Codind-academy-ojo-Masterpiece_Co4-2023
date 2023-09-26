@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import {Color, FontFamily} from '../GlobalStyles';
 import ScrollWithDot from '../components/ScrollWithDot';
+import CardCategories from '../components/CardCategories';
 
 const Home = () => {
   const CardData = [
@@ -53,6 +54,7 @@ of Card 1`,
       bgColor: '#fff8eb',
     },
   ];
+
   return (
     <View style={styles.mainView}>
       <View style={styles.helloTxt}>
@@ -79,12 +81,15 @@ Weekly Progress.`}
       <View style={styles.fatherChoose}>
         <Text style={styles.chooseFavTxt}>Choose Your Favorites</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {data.map(card => (
-            <TouchableOpacity
-              style={[styles.card, {backgroundColor: card.bgColor}]}
-              key={card.id}>
-              <Image source={card.img} />
-            </TouchableOpacity>
+          {data.map((card, index) => (
+            <CardCategories
+              imageSrc={card.img}
+              id={card.id}
+              bgColor={card.bgColor}
+              width={0.3}
+              height={0.14}
+              key={index}
+            />
           ))}
         </ScrollView>
       </View>
@@ -114,8 +119,6 @@ const styles = StyleSheet.create({
   cardHome: {
     marginTop: 16,
     width: '80%',
-    // paddingHorizontal: 40,
-    // flexDirection: 'row',
   },
   articleTxt: {
     color: '#ff806e',
@@ -178,20 +181,6 @@ const styles = StyleSheet.create({
   fatherChoose: {
     width: '80%',
     textAlign: 'left',
-  },
-  card: {
-    width: 120,
-    height: 120,
-    backgroundColor: 'white',
-    borderRadius: 32,
-    margin: 10,
-    padding: 16,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    alignItems: 'center',
   },
   cardTitle: {
     fontSize: 18,

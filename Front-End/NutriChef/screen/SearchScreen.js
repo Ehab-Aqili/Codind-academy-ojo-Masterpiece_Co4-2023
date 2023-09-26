@@ -70,7 +70,7 @@ const SearchScreen = () => {
       </ScrollView>
       <Text style={styles.hotNow}>Trending</Text>
       {link.map(item => (
-        <TrendingSearch linkText={item.linkText} />
+        <TrendingSearch linkText={item.linkText} key={item.id} />
       ))}
     </View>
   );

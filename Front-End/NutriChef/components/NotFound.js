@@ -2,10 +2,10 @@
 import { Image, View } from 'react-native';
 import React from 'react';
 
-const NotFound = () => {
+const NotFound = ({imageSrc}) => {
   return (
     <View>
-      <Image source={require('../assets/noFound.png')} />
+      <Image source={imageSrc} />
     </View>
   );
 };

@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     color: '#cfe7cb',
   },
   kcalIcon: {
-  
     width: 117,
     height: 48,
     position: 'absolute',

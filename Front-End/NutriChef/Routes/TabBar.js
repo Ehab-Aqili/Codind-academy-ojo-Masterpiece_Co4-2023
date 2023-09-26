@@ -9,6 +9,7 @@ import Splash from '../screen/Splash';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Image} from 'react-native';
 import SearchScreen from '../screen/SearchScreen';
+import FavoritesScreen from '../screen/FavoritesScreen';
 const Tab = createBottomTabNavigator();
 
 const TabBar = () => {
@@ -32,7 +33,7 @@ const TabBar = () => {
       />
 
       <Tab.Screen
-        name="Splash"
+        name="Search"
         component={SearchScreen}
         options={{
           tabBarLabel: 'Search',
@@ -58,10 +59,10 @@ const TabBar = () => {
         }}
       />
       <Tab.Screen
-        name="HomeThree"
-        component={Splash}
+        name="Favorites"
+        component={FavoritesScreen}
         options={{
-          tabBarLabel: 'HomeThree',
+          tabBarLabel: 'Favorites',
           tabBarIcon: ({focused}) =>
             focused ? (
               <Image source={require('../assets/Heart.png')} />
