@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   cardHome: {
     marginTop: 16,
-    width: '80%',
+    width: '90%',
   },
   articleTxt: {
     color: '#ff806e',
@@ -147,11 +147,12 @@ const styles = StyleSheet.create({
   trackCard: {
     marginTop: '7%',
     backgroundColor: '#9e9bc7',
-    width: '80%',
+    width: '90%',
     height: '12%',
     borderRadius: 32,
     flexDirection: 'row',
-    padding: 20,
+    columnGap: 30,
+    padding: 15,
   },
   trackArt: {
     color: '#fff',
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#fff',
     padding: 10,
-    marginTop: 5,
+    marginTop: 3,
     alignItems: 'center',
   },
   trackTextBtn: {
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
     padding: '3%',
   },
   fatherChoose: {
-    width: '80%',
+    width: '90%',
     textAlign: 'left',
   },
   cardTitle: {

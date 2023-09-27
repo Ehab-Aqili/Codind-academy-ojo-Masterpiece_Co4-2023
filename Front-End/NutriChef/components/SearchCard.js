@@ -15,7 +15,7 @@ const SearchCard = ({imageUrl, title}) => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#fcfcfc',
     borderRadius: 14,
     margin: 10,
     width: 200,

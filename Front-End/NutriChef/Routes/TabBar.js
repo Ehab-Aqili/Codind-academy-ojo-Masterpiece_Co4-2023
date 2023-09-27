@@ -12,6 +12,7 @@ const TabBar = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: '#91c788',
+        tabBarStyle: {height: 80, paddingBottom: 10},
       }}>
       <Tab.Screen
         component={Home}

@@ -49,16 +49,14 @@ const recipesData = [
     kcalNum: 231,
     recipeName: 'Chopped Spring Ramen',
     recipeCategories: 'Scallions & tomatoes',
-    // recipeImage: require('../assets/resipeone.png'),
-    recipeImage: require('../assets/MicecoFood.png'),
+    recipeImage: require('../assets/ResipeOne.png'),
   },
   {
     id: 2,
     kcalNum: 381,
     recipeName: 'Chicken Tandoori',
     recipeCategories: 'Chicken & Salad',
-    // recipeImage: require('../assets/resipeTwo.png'),
-    recipeImage: require('../assets/MicecoFood.png'),
+    recipeImage: require('../assets/ResipeTwo.png'),
   },
 ];
 const ImageFoodNotFound = require('../assets/FoodNotFound.png');
