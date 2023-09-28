@@ -105,7 +105,7 @@ const SliderOnBoarding = () => {
 
 const styles = StyleSheet.create({
   card: {
-    width: 200,
+    width: 350,
     height: 150,
     borderRadius: 8,
     margin: 10,

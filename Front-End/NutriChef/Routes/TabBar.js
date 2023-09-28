@@ -5,6 +5,8 @@ import Splash from '../screen/Splash';
 import {Image} from 'react-native';
 import SearchScreen from '../screen/SearchScreen';
 import FavoritesScreen from '../screen/FavoritesScreen';
+import ProfileScreen from '../screen/ProfileScreen';
+import SliderOnBoarding from '../components/SliderOnBoarding';
 const Tab = createBottomTabNavigator();
 
 const TabBar = () => {
@@ -43,7 +45,7 @@ const TabBar = () => {
       />
       <Tab.Screen
         name="HomeFour"
-        component={Splash}
+        component={SliderOnBoarding}
         options={{
           tabBarLabel: 'HomeFour',
           tabBarIcon: ({focused}) =>
@@ -68,10 +70,10 @@ const TabBar = () => {
         }}
       />
       <Tab.Screen
-        name="HomeFive"
-        component={Splash}
+        name="Profile"
+        component={ProfileScreen}
         options={{
-          tabBarLabel: 'HomeThree',
+          tabBarLabel: 'Profile',
           tabBarIcon: ({focused}) =>
             focused ? (
               <Image source={require('../assets/Profile.png')} />

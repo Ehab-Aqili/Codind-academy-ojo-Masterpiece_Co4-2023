@@ -24,7 +24,6 @@ const OnBoarding = ({navigation}) => {
             navigation.navigate('home');
           }}
         />
-
         <Text style={styles.alreadyHaveAnContainer}>
           <Text>Already Have An Acount?</Text>
           <Text style={styles.logIn1Typo}>Log In</Text>
