@@ -1,16 +1,14 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {Border, Color, FontFamily, FontSize} from '../GlobalStyles';
 
 const CustomButton = ({event, ButtonTxt}) => {
   return (
-    <View style={styles.onboarding01Child}>
-      <Text style={[styles.getStarted]} onPress={event}>
-        {ButtonTxt}
-      </Text>
-    </View>
+    <TouchableOpacity style={styles.onboarding01Child} onPress={event}>
+      <Text style={[styles.getStarted]}>{ButtonTxt}</Text>
+    </TouchableOpacity>
   );
 };
 

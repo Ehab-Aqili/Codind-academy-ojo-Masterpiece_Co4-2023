@@ -1,9 +1,9 @@
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   Dimensions,
   Image,

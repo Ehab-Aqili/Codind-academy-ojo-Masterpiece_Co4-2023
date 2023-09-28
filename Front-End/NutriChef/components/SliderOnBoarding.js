@@ -63,9 +63,11 @@ const SliderOnBoarding = ({navigation}) => {
       navigation.navigate('SignUp');
     }
   };
-
+  const HandelNavigationLogIn = () => {
+    navigation.navigate('LogIn');
+  };
   return (
-    <View>
+    <View style={styles.mainView}>
       <ScrollView
         ref={scrollViewRef}
         horizontal
@@ -109,7 +111,9 @@ const SliderOnBoarding = ({navigation}) => {
       <View style={styles.alreadyCenter}>
         <Text style={styles.alreadyHaveAnContainer}>
           <Text>Already Have An Acount?</Text>
-          <Text style={styles.logIn1Typo}>Log In</Text>
+          <Text onPress={HandelNavigationLogIn} style={styles.logIn1Typo}>
+            Log In
+          </Text>
         </Text>
       </View>
     </View>
@@ -117,6 +121,10 @@ const SliderOnBoarding = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  mainView: {
+    backgroundColor: Color.bordersBackgroundsWhiteBackground,
+    height: '100%',
+  },
   indicatorContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -145,6 +153,7 @@ const styles = StyleSheet.create({
   },
   alreadyCenter: {
     alignItems: 'center',
+    marginBottom: 40,
   },
 });
 
