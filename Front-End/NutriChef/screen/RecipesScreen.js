@@ -78,21 +78,41 @@ const RecipesScreen = () => {
 
       {/* Ingredients Bar */}
       <Text style={styles.title}>Ingredients:</Text>
-      <View style={styles.ingredientsBar}>
-        <Text>- Ingredient 1</Text>
-        <Text>- Ingredient 2</Text>
-        <Text>- Ingredient 3</Text>
+      <View style={[styles.ingredientsBar, styles.divider]}>
+        <Text style={styles.Item}>
+          <Image
+            style={styles.buttonImage}
+            source={require('../assets/FoodItemTwo.png')}
+          />
+          Ingredient 1
+        </Text>
+        <Text style={styles.Item}>
+          <Image
+            style={styles.buttonImage}
+            source={require('../assets/FoodItemTwo.png')}
+          />
+          Ingredient 2
+        </Text>
+        <Text style={styles.Item}>
+          <Image
+            style={styles.buttonImage}
+            source={require('../assets/FoodItemTwo.png')}
+          />
+          Ingredient 3
+        </Text>
+
         {/* Add more ingredients as needed */}
-        <View style={styles.divider} />
       </View>
 
       {/* Directions Bar */}
       <Text style={styles.title}>Directions:</Text>
       <View style={styles.directionsBar}>
-        <Text>1. Step 1</Text>
-        <Text>2. Step 2</Text>
-        <Text>3. Step 3</Text>
-        {/* Add more steps as needed */}
+        <Text style={styles.directionText}>
+          aaaaaaaaaaaasknflkasnflasnflasnsflkasbnfl nflsdlgfnds'lakgnsldkgk sdo
+          ch;idu f
+          ;sgnkadlncann;iopewwepmomi[rchoi[mrccrssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssogmi[himgciomaimcgimocmhirrcghmirgcmircaghimrcghmicrghmicghmiwhmcawghmchmpcgarwhmps
+          nflmasm,,lks s.nd
+        </Text>
       </View>
     </ScrollView>
   );
@@ -143,9 +163,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    fontSize: FontSize.size_5xl,
+    fontSize: FontSize.size_6xl,
     fontWeight: '900',
     padding: 10,
+  },
+  Item: {
+    fontSize: FontSize.size_lg,
+    fontWeight: '700',
+  },
+  directionText: {
+    paddingHorizontal: 20,
+    fontSize: FontSize.size_lg,
   },
 });
 

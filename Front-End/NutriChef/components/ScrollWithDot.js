@@ -26,7 +26,7 @@ const ScrollWithDot = ({data}) => {
         onScroll={event => {
           // Calculate the active card based on scroll position
           const contentOffsetX = event.nativeEvent.contentOffset.x;
-          const cardIndex = Math.round(contentOffsetX / 220); // 220 is the card width including margin
+          const cardIndex = Math.round(contentOffsetX / 300); // 220 is the card width including margin
           setActiveCardIndex(cardIndex);
         }}>
         {data.map((card, index) => (
