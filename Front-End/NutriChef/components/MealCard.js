@@ -1,13 +1,23 @@
 /* eslint-disable prettier/prettier */
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
-import {FontSize} from '../GlobalStyles';
+import {Color, FontSize} from '../GlobalStyles';
 
-const ProfileCategories = ({image, txt}) => {
+const MealCard = ({image, txt, cal}) => {
   return (
     <TouchableOpacity style={styles.mainView}>
       <Image source={image} />
-      <Text style={styles.txt}>{txt}</Text>
+      <View>
+        <Text style={styles.txt}>{txt}</Text>
+        <Text style={styles.cal}>{cal}</Text>
+      </View>
       <Image
         style={styles.rightArrow}
         source={require('../assets/ArrowRightGray.png')}
@@ -16,7 +26,7 @@ const ProfileCategories = ({image, txt}) => {
   );
 };
 
-export default ProfileCategories;
+export default MealCard;
 
 const styles = StyleSheet.create({
   mainView: {
@@ -26,8 +36,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 20,
     paddingHorizontal: 35,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    backgroundColor: Color.mintcream,
+    borderRadius: 20,
+    marginBottom: 20,
   },
   rightArrow: {
     width: 40,
@@ -36,5 +47,10 @@ const styles = StyleSheet.create({
   txt: {
     fontSize: FontSize.size_5xl,
     fontWeight: '700',
+    textAlign: 'center',
+  },
+  cal: {
+    fontSize: FontSize.size_mid,
+    textAlign: 'center',
   },
 });

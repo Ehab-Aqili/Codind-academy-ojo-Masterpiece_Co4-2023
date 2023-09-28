@@ -64,7 +64,7 @@ const SliderOnBoarding = ({navigation}) => {
     }
   };
   const HandelNavigationLogIn = () => {
-    navigation.navigate('LogIn');
+    navigation.navigate('home');
   };
   return (
     <View style={styles.mainView}>

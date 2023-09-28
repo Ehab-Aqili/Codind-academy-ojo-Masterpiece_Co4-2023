@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {
   View,
@@ -32,7 +33,7 @@ const DateCard = () => {
         <TouchableHighlight
           key={index}
           onPress={() => handleDatePress(dateData.day)}
-          underlayColor="lightgray">
+          underlayColor="#FFF">
           <View>
             {selectedDate === dateData.day ? (
               <View style={styles.selectedCard}>
@@ -65,6 +66,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 7,
     borderRadius: 10,
+    marginTop: 25,
+    marginBottom: 480,
   },
   selectedCard: {
     width: 60,
@@ -74,7 +77,6 @@ const styles = StyleSheet.create({
     margin: 7,
     borderRadius: 10,
     backgroundColor: Color.darkseagreen,
-    marginTop: 50,
   },
   selectedTxt: {
     color: '#fff',
