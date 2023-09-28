@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Button,
+  Dimensions,
 } from 'react-native';
 
 const data = [
@@ -37,7 +38,9 @@ of Card 1`,
 const SliderOnBoarding = () => {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const scrollViewRef = useRef(null); // Reference to the ScrollView component
+  const screenWidth = Dimensions.get('window').width;
 
+  const SliderWidth = screenWidth * 0.8; // 80% of screen width
   const handleCardPress = (card, index) => {
     setActiveCardIndex(index);
     console.log(`Pressed on ${card.title}`);
@@ -48,7 +51,10 @@ const SliderOnBoarding = () => {
     const nextIndex = activeCardIndex + 1;
     if (nextIndex < data.length) {
       // Scroll to the next card
-      scrollViewRef.current.scrollTo({x: nextIndex * 220, animated: true});
+      scrollViewRef.current.scrollTo({
+        x: nextIndex * SliderWidth,
+        animated: true,
+      });
       setActiveCardIndex(nextIndex);
     }
   };
@@ -61,7 +67,7 @@ const SliderOnBoarding = () => {
         showsHorizontalScrollIndicator={false}
         onScroll={event => {
           const contentOffsetX = event.nativeEvent.contentOffset.x;
-          const cardIndex = Math.round(contentOffsetX / 220);
+          const cardIndex = Math.round(contentOffsetX / SliderWidth);
           setActiveCardIndex(cardIndex);
         }}>
         {data.map((card, index) => (
@@ -73,9 +79,7 @@ const SliderOnBoarding = () => {
             <Text style={styles.cardTitle}>{card.title}</Text>
             <Text>{card.content}</Text>
 
-            <TouchableOpacity style={styles.ellipsisButton}>
-              {/* <MaterialIcons name="more-vert" size={24} color="black" /> */}
-            </TouchableOpacity>
+            <TouchableOpacity style={styles.ellipsisButton}></TouchableOpacity>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -85,7 +89,6 @@ const SliderOnBoarding = () => {
             key={index}
             style={[
               styles.indicator,
-              // eslint-disable-next-line react-native/no-inline-styles
               {
                 backgroundColor:
                   index === activeCardIndex ? 'blue' : 'lightgray',

@@ -7,6 +7,7 @@ import SearchScreen from '../screen/SearchScreen';
 import FavoritesScreen from '../screen/FavoritesScreen';
 import ProfileScreen from '../screen/ProfileScreen';
 import SliderOnBoarding from '../components/SliderOnBoarding';
+import CaloriesScreen from '../screen/CaloriesScreen';
 const Tab = createBottomTabNavigator();
 
 const TabBar = () => {
@@ -44,10 +45,10 @@ const TabBar = () => {
         }}
       />
       <Tab.Screen
-        name="HomeFour"
-        component={SliderOnBoarding}
+        name="Calories"
+        component={CaloriesScreen}
         options={{
-          tabBarLabel: 'HomeFour',
+          tabBarLabel: 'Calories',
           tabBarIcon: ({focused}) =>
             focused ? (
               <Image source={require('../assets/Camera.png')} />
