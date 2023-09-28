@@ -11,40 +11,38 @@ import {
 } from 'react-native';
 import OnBoarding from '../screen/OnBoarding';
 import CustomButton from './CustomButton';
+import Slider from './Slider';
+import {Color, FontFamily, FontSize} from '../GlobalStyles';
 
 const data = [
   {
     id: 1,
-    title: 'Card 1',
-    content: `This is the content
-of Card 1`,
-    backgroundColor: 'red',
+    image: require('../assets/ImageSliderOne.png'),
+    title: 'Eat Healthy',
+    txt: 'Maintaining good health should be the primary focus of everyone.',
   },
   {
     id: 2,
-    title: 'Card 2',
-    content: `This is the content
-of Card 1`,
-    backgroundColor: 'blue',
+    image: require('../assets/ImageSliderTwo.png'),
+    title: 'Healthy Recipes',
+    txt: 'Browse thousands of healthy recipes from all over the world.',
   },
   {
     id: 3,
-    title: 'Card 3',
-    content: `This is the content
-of Card 1`,
-    backgroundColor: 'green',
+    image: require('../assets/ImageSliderThree.png'),
+    title: 'Track Your Health',
+    txt: 'With amazing inbuilt tools you can track your progress.',
   },
-  // Add more card data with different background colors
 ];
 
-const Boarding = [<OnBoarding />, <OnBoarding />, <OnBoarding />];
+// const Boarding = [<OnBoarding />, <OnBoarding />, <OnBoarding />];
 
-const SliderOnBoarding = () => {
+const SliderOnBoarding = ({navigation}) => {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const scrollViewRef = useRef(null); // Reference to the ScrollView component
   const screenWidth = Dimensions.get('window').width;
 
-  const SliderWidth = screenWidth * 0.8; // 80% of screen width
+  const SliderWidth = screenWidth * 1; // 80% of screen width
   const handleCardPress = (card, index) => {
     setActiveCardIndex(index);
     console.log(`Pressed on ${card.title}`);
@@ -61,6 +59,9 @@ const SliderOnBoarding = () => {
       });
       setActiveCardIndex(nextIndex);
     }
+    if (nextIndex === 3) {
+      navigation.navigate('SignUp');
+    }
   };
 
   return (
@@ -74,17 +75,14 @@ const SliderOnBoarding = () => {
           const cardIndex = Math.round(contentOffsetX / SliderWidth);
           setActiveCardIndex(cardIndex);
         }}>
-        {data.map((card, index) => (
-          <TouchableOpacity
+        {data.map(card => (
+          <Slider
+            width={SliderWidth}
             key={card.id}
-            style={[styles.card, {backgroundColor: card.backgroundColor}]}
-            onPress={() => handleCardPress(card, index)}
-            activeOpacity={0.7}>
-            <Text style={styles.cardTitle}>{card.title}</Text>
-            <Text>{card.content}</Text>
-
-            <TouchableOpacity style={styles.ellipsisButton}></TouchableOpacity>
-          </TouchableOpacity>
+            image={card.image}
+            title={card.title}
+            txt={card.txt}
+          />
         ))}
       </ScrollView>
       <View style={styles.indicatorContainer}>
@@ -108,39 +106,21 @@ const SliderOnBoarding = () => {
           disabled={activeCardIndex === data.length - 1}
         />
       </View>
+      <View style={styles.alreadyCenter}>
+        <Text style={styles.alreadyHaveAnContainer}>
+          <Text>Already Have An Acount?</Text>
+          <Text style={styles.logIn1Typo}>Log In</Text>
+        </Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    width: 350,
-    height: 150,
-    borderRadius: 8,
-    margin: 10,
-    padding: 16,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    position: 'relative',
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  ellipsisButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-  },
   indicatorContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
   },
   indicator: {
     width: 8,
@@ -150,6 +130,20 @@ const styles = StyleSheet.create({
   },
   btnCenter: {
     marginVertical: 20,
+    alignItems: 'center',
+  },
+  centerSlider: {
+    alignItems: 'center',
+  },
+  alreadyHaveAnContainer: {
+    fontSize: FontSize.size_mid,
+  },
+  logIn1Typo: {
+    fontFamily: FontFamily.signikaSemiBold,
+    fontWeight: '600',
+    color: Color.darkseagreen,
+  },
+  alreadyCenter: {
     alignItems: 'center',
   },
 });

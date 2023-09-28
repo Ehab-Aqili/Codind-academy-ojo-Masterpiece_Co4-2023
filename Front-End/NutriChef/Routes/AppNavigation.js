@@ -7,6 +7,7 @@ import OnBoarding from '../screen/OnBoarding';
 import TabBar from './TabBar';
 import SignUp from '../screen/SignUpScreen';
 import RecipesScreen from '../screen/RecipesScreen';
+import SliderOnBoarding from '../components/SliderOnBoarding';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ const AppNavigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Boarding"
-          component={OnBoarding}
+          component={SliderOnBoarding}
           options={{title: 'BOARDING'}}
         />
         <Stack.Screen name="Splash" component={Splash} />

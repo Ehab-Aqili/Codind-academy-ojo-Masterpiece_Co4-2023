@@ -3,23 +3,17 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Color, FontFamily, FontSize} from '../GlobalStyles';
 
-const Slider = () => {
+const Slider = ({image, title, txt, width}) => {
   return (
-    <View style={styles.mainView}>
+    <View style={[styles.mainView, {width: width}]}>
       <Image
         style={styles.logoImg}
         resizeMode="contain"
         source={require('../assets/kcal1.png')}
       />
-      <Image
-        style={styles.sliderImg}
-        resizeMode="contain"
-        source={require('../assets/eating-healthy-foodcuate-1.png')}
-      />
-      <Text style={[styles.eatHealthy]}>Eat Healthy</Text>
-      <Text style={[styles.maintainingGoodHealth, styles.timeFlexBox]}>
-        Maintaining good health should be the primary focus of everyone.
-      </Text>
+      <Image style={styles.sliderImg} resizeMode="contain" source={image} />
+      <Text style={[styles.eatHealthy]}>{title}</Text>
+      <Text style={[styles.maintainingGoodHealth]}>{txt}</Text>
     </View>
   );
 };
@@ -28,7 +22,6 @@ export default Slider;
 
 const styles = StyleSheet.create({
   mainView: {
-    width: '100%',
     flex: 1,
     alignItems: 'center',
     paddingLeft: '5%',
@@ -40,7 +33,6 @@ const styles = StyleSheet.create({
   },
   sliderImg: {
     width: '100%',
-    height: '100%',
   },
   eatHealthy: {
     fontFamily: FontFamily.signikaSemiBold,
@@ -51,6 +43,7 @@ const styles = StyleSheet.create({
     color: Color.gray_600,
     fontFamily: FontFamily.signikaRegular,
     fontSize: FontSize.size_mid,
-    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 5,
   },
 });
