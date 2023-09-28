@@ -6,9 +6,11 @@ import {
   Button,
   StyleSheet,
   Dimensions,
+  Image,
 } from 'react-native';
+import CustomButton from '../components/CustomButton';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,8 +50,7 @@ const SignUp = () => {
 
     // If there are no errors, proceed with signup
     if (Object.keys(newErrors).length === 0) {
-      // Implement your signup logic here
-      // Make API requests, etc.
+      navigation.navigate('home');
       console.log('first');
     }
   };
@@ -61,7 +62,8 @@ const SignUp = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Signup</Text>
+      {/* <Text style={styles.title}>Signup</Text> */}
+      <Image source={require('../assets/SignUpImage.png')} />
       <TextInput
         style={styles.input}
         placeholder="Username"
@@ -98,7 +100,8 @@ const SignUp = () => {
       {errors.confirmPassword ? (
         <Text style={styles.error}>{errors.confirmPassword}</Text>
       ) : null}
-      <Button title="Sign Up" onPress={handleSignup} />
+      {/* <Button title="Sign Up" onPress={handleSignup} /> */}
+      <CustomButton ButtonTxt="Sign Up" event={handleSignup} />
     </View>
   );
 };
@@ -120,10 +123,10 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     maxWidth: 300,
-    height: 40,
+    height: 60,
     borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
+    borderWidth: 2,
+    borderRadius: 35,
     paddingHorizontal: 10,
     marginBottom: 10,
   },

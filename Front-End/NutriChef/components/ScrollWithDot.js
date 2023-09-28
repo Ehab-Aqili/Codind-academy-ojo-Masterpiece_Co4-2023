@@ -58,7 +58,6 @@ const ScrollWithDot = ({data}) => {
             key={index}
             style={[
               styles.indicator,
-              // eslint-disable-next-line react-native/no-inline-styles
               {
                 backgroundColor:
                   index === activeCardIndex ? '#ff8473' : '#ffc0b8',

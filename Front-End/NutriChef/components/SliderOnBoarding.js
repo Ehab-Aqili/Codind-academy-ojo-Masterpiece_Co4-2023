@@ -9,6 +9,8 @@ import {
   Button,
   Dimensions,
 } from 'react-native';
+import OnBoarding from '../screen/OnBoarding';
+import CustomButton from './CustomButton';
 
 const data = [
   {
@@ -34,6 +36,8 @@ of Card 1`,
   },
   // Add more card data with different background colors
 ];
+
+const Boarding = [<OnBoarding />, <OnBoarding />, <OnBoarding />];
 
 const SliderOnBoarding = () => {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -91,17 +95,19 @@ const SliderOnBoarding = () => {
               styles.indicator,
               {
                 backgroundColor:
-                  index === activeCardIndex ? 'blue' : 'lightgray',
+                  index === activeCardIndex ? '#ff8473' : '#ffc0b8',
               },
             ]}
           />
         ))}
       </View>
-      <Button
-        title="Next"
-        onPress={handleNextButton}
-        disabled={activeCardIndex === data.length - 1}
-      />
+      <View style={styles.btnCenter}>
+        <CustomButton
+          ButtonTxt={'Get Started'}
+          event={handleNextButton}
+          disabled={activeCardIndex === data.length - 1}
+        />
+      </View>
     </View>
   );
 };
@@ -141,6 +147,10 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 4,
     marginHorizontal: 4,
+  },
+  btnCenter: {
+    marginVertical: 20,
+    alignItems: 'center',
   },
 });
 

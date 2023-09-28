@@ -21,7 +21,7 @@ const OnBoarding = ({navigation}) => {
           ButtonTxt={'Get Started'}
           event={() => {
             console.log('Button pressed');
-            navigation.navigate('home');
+            navigation.navigate('SignUp');
           }}
         />
         <Text style={styles.alreadyHaveAnContainer}>

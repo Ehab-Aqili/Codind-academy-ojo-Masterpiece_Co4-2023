@@ -30,7 +30,7 @@ const AppNavigation = () => {
           component={SignUp}
           options={{headerShown: false}}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="RecipesScreen"
           component={RecipesScreen}
           options={{headerShown: false}}
