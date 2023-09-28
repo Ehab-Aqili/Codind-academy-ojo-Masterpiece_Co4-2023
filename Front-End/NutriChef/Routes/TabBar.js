@@ -8,6 +8,7 @@ import FavoritesScreen from '../screen/FavoritesScreen';
 import ProfileScreen from '../screen/ProfileScreen';
 import SliderOnBoarding from '../components/SliderOnBoarding';
 import CaloriesScreen from '../screen/CaloriesScreen';
+import RecipesScreen from '../screen/RecipesScreen';
 const Tab = createBottomTabNavigator();
 
 const TabBar = () => {

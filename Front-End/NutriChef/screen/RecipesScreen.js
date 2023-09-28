@@ -8,9 +8,11 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
+import {FontSize} from '../GlobalStyles';
 
 const RecipesScreen = () => {
   const [isLiked, setIsLiked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const [likeCount, setLikeCount] = useState(42); // Initialize with the actual number of likes
 
   const handleLikePress = () => {
@@ -26,6 +28,11 @@ const RecipesScreen = () => {
     setIsLiked(!isLiked);
   };
 
+  const handleSavePress = () => {
+    // Toggle the save state
+    setIsSaved(!isSaved);
+  };
+
   return (
     <ScrollView style={styles.container}>
       <Image
@@ -39,19 +46,20 @@ const RecipesScreen = () => {
             <Image
               source={
                 isLiked
-                  ? require('../assets/fruits.png')
-                  : require('../assets/Heart.png')
+                  ? require('../assets/DarkLike.png')
+                  : require('../assets/LightLike.png')
               }
               style={styles.buttonImage}
             />
           </TouchableOpacity>
           <Text style={styles.likeCount}>{likeCount}</Text>
-          <TouchableOpacity
-            onPress={() => {
-              /* Handle Save button click */
-            }}>
+          <TouchableOpacity onPress={handleSavePress}>
             <Image
-              source={require('../assets/Heart.png')}
+              source={
+                isSaved
+                  ? require('../assets/Heart.png') // Dark version of the Save button
+                  : require('../assets/HeartLight.png') // Light version of the Save button
+              }
               style={styles.buttonImage}
             />
           </TouchableOpacity>
@@ -60,17 +68,17 @@ const RecipesScreen = () => {
       </View>
 
       {/* Nutrition Information Bar */}
-      <View style={styles.nutritionBar}>
+      <Text style={styles.title}>Nutrition Information</Text>
+      <View style={[styles.nutritionBar, styles.divider]}>
         <Text>Calories: 300</Text>
         <Text>Carbs: 40g</Text>
         <Text>Fat: 10g</Text>
         <Text>Protein: 20g</Text>
-        <View style={styles.divider} />
       </View>
 
       {/* Ingredients Bar */}
+      <Text style={styles.title}>Ingredients:</Text>
       <View style={styles.ingredientsBar}>
-        <Text>Ingredients:</Text>
         <Text>- Ingredient 1</Text>
         <Text>- Ingredient 2</Text>
         <Text>- Ingredient 3</Text>
@@ -79,8 +87,8 @@ const RecipesScreen = () => {
       </View>
 
       {/* Directions Bar */}
+      <Text style={styles.title}>Directions:</Text>
       <View style={styles.directionsBar}>
-        <Text>Directions:</Text>
         <Text>1. Step 1</Text>
         <Text>2. Step 2</Text>
         <Text>3. Step 3</Text>
@@ -121,8 +129,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   nutritionBar: {
+    flexDirection: 'row',
     backgroundColor: 'white',
     padding: 10,
+    gap: 20,
   },
   ingredientsBar: {
     backgroundColor: 'white',
@@ -130,6 +140,11 @@ const styles = StyleSheet.create({
   },
   directionsBar: {
     backgroundColor: 'white',
+    padding: 10,
+  },
+  title: {
+    fontSize: FontSize.size_5xl,
+    fontWeight: '900',
     padding: 10,
   },
 });
