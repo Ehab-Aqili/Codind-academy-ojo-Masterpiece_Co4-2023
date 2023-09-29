@@ -9,7 +9,7 @@ const Slider = ({image, title, txt, width}) => {
       <Image
         style={styles.logoImg}
         resizeMode="contain"
-        source={require('../assets/kcal1.png')}
+        source={require('../assets/LineLogo.png')}
       />
       <Image style={styles.sliderImg} resizeMode="contain" source={image} />
       <Text style={[styles.eatHealthy]}>{title}</Text>
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     paddingRight: '5%',
   },
   logoImg: {
-    width: '30%',
+    width: '90%',
     height: '30%',
   },
   sliderImg: {

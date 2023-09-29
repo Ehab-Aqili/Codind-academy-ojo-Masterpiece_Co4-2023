@@ -4,32 +4,37 @@ import React from 'react';
 import {Color, FontFamily} from '../GlobalStyles';
 import ProfileCategories from '../components/ProfileCategories';
 
-const PorfileScreen = () => {
+const PorfileScreen = ({navigation}) => {
   const data = [
     {
       id: 1,
       img: require('../assets/ProfileOne.png'),
       txt: 'Profile',
+      isCard: 'ProfileInfo',
     },
     {
       id: 2,
       img: require('../assets/Stars.png'),
       txt: 'Renew Plans',
+      isCard: 'RenewPlans',
     },
     {
       id: 3,
       img: require('../assets/Setting.png'),
       txt: 'Setting',
+      isCard: 'Setting',
     },
     {
       id: 4,
       img: require('../assets/Terms.png'),
       txt: 'Terms & Privacy Policy',
+      isCard: 'Terms',
     },
     {
       id: 5,
       img: require('../assets/Logout.png'),
       txt: 'Logout',
+      isCard: 'Logout',
     },
   ];
   return (
@@ -42,6 +47,8 @@ const PorfileScreen = () => {
           key={item.id}
           image={item.img}
           txt={item.txt}
+          isCard={item.isCard}
+          navigation={navigation}
         />
       ))}
     </View>

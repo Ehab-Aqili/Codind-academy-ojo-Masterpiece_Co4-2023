@@ -1,11 +1,33 @@
 /* eslint-disable prettier/prettier */
-import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Alert, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {FontSize} from '../GlobalStyles';
 
-const ProfileCategories = ({image, txt}) => {
+const ProfileCategories = ({image, txt, isCard, navigation}) => {
+  const handleNavigation = () => {
+    if (isCard === 'ProfileInfo') {
+      navigation.navigate('ProfileInfoScreen');
+    } else if (isCard === 'RenewPlans') {
+      console.log('notProfileInfo');
+    } else if (isCard === 'Setting') {
+      console.log('notProfileInfo');
+    } else if (isCard === 'Terms') {
+      console.log('notProfileInfo');
+    } else if (isCard === 'Logout') {
+      Alert.alert('Logout', 'You Are Logout From NutiChef', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => navigation.navigate('LogIn')},
+      ]);
+    }
+  };
   return (
-    <TouchableOpacity style={styles.mainView}>
+    <TouchableOpacity
+      onPress={() => handleNavigation()}
+      style={styles.mainView}>
       <Image source={image} />
       <Text style={styles.txt}>{txt}</Text>
       <Image

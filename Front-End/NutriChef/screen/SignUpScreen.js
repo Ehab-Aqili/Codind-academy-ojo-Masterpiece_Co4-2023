@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import CustomButton from '../components/CustomButton';
+import {Color, FontSize} from '../GlobalStyles';
 
 const SignUp = ({navigation}) => {
   const [username, setUsername] = useState('');
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     height: window.height,
+    backgroundColor: Color.bordersBackgroundsWhiteBackground,
   },
   title: {
     fontSize: 24,
@@ -129,6 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     paddingHorizontal: 10,
     marginBottom: 10,
+    fontSize: FontSize.size_lg,
   },
   error: {
     color: 'red',

@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import CustomButton from '../components/CustomButton';
-import {FontFamily, FontSize} from '../GlobalStyles';
+import {Color, FontFamily, FontSize} from '../GlobalStyles';
 
 const LogIn = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -49,6 +49,11 @@ const LogIn = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.logoImg}
+        resizeMode="contain"
+        source={require('../assets/LineLogo.png')}
+      />
       <Image source={require('../assets/ImageSliderTwo.png')} />
       <TextInput
         style={styles.input}
@@ -67,7 +72,9 @@ const LogIn = ({navigation}) => {
       {errors.password ? (
         <Text style={styles.error}>{errors.password}</Text>
       ) : null}
-      <CustomButton ButtonTxt="Log In" event={handleLogin} />
+      <View style={styles.btnCustom}>
+        <CustomButton ButtonTxt="Log In" event={handleLogin} />
+      </View>
     </View>
   );
 };
@@ -81,6 +88,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     height: window.height,
+    backgroundColor: Color.bordersBackgroundsWhiteBackground,
   },
   input: {
     width: '100%',
@@ -97,6 +105,13 @@ const styles = StyleSheet.create({
   error: {
     color: 'red',
     marginBottom: 5,
+  },
+  btnCustom: {
+    marginTop: 15,
+  },
+  logoImg: {
+    width: '70%',
+    height: '10%',
   },
 });
 

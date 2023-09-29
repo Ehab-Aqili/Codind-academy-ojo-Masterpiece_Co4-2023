@@ -9,7 +9,7 @@ const Splash = () => {
       <Image
         style={styles.kcalIcon}
         resizeMode="cover"
-        source={require('../assets/kcal.png')}
+        source={require('../assets/WLogo.png')}
       />
       <Text style={[styles.zuamica]}>HEAB AQILI</Text>
     </View>
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     color: '#cfe7cb',
   },
   kcalIcon: {
-    width: 117,
-    height: 48,
+    width: 200,
+    height: 140,
     position: 'absolute',
   },
 });

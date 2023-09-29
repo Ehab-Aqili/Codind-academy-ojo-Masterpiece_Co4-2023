@@ -7,12 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Color, FontFamily} from '../GlobalStyles';
 import ScrollWithDot from '../components/ScrollWithDot';
 import CardCategories from '../components/CardCategories';
+import Loading from '../components/Loading';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const CardData = [
     {
       id: 1,
@@ -54,7 +57,28 @@ of Card 1`,
       bgColor: '#fff8eb',
     },
   ];
-
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(delay);
+  }, []);
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+          backgroundColor: '#fff',
+        }}>
+        {/* <Text>Loading...</Text> */}
+        <Loading />
+      </View>
+    );
+  }
   return (
     <View style={styles.mainView}>
       <View style={styles.helloTxt}>
