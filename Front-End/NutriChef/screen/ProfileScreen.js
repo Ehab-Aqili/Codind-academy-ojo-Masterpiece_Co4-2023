@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Color, FontFamily, FontSize} from '../GlobalStyles';
+import {Color, FontFamily} from '../GlobalStyles';
 import ProfileCategories from '../components/ProfileCategories';
 
 const PorfileScreen = () => {
@@ -23,12 +24,12 @@ const PorfileScreen = () => {
     {
       id: 4,
       img: require('../assets/Terms.png'),
-      txt: 'Setting',
+      txt: 'Terms & Privacy Policy',
     },
     {
       id: 5,
       img: require('../assets/Logout.png'),
-      txt: 'Setting',
+      txt: 'Logout',
     },
   ];
   return (
@@ -36,7 +37,12 @@ const PorfileScreen = () => {
       <Image style={styles.UserImg} source={require('../assets/UserImg.jpg')} />
       <Text style={styles.UserName}>Ihab Aloqaily</Text>
       {data.map(item => (
-        <ProfileCategories style={styles.profileCard} key={item.id} image={item.img} txt={item.txt} />
+        <ProfileCategories
+          style={styles.profileCard}
+          key={item.id}
+          image={item.img}
+          txt={item.txt}
+        />
       ))}
     </View>
   );
@@ -64,5 +70,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
   },
-  profileCard:{}
 });

@@ -16,7 +16,7 @@ const MealCard = ({image, txt, cal}) => {
       <Image source={image} />
       <View>
         <Text style={styles.txt}>{txt}</Text>
-        <Text style={styles.cal}>{cal}</Text>
+        <Text style={styles.cal}>{cal} Calories</Text>
       </View>
       <Image
         style={styles.rightArrow}

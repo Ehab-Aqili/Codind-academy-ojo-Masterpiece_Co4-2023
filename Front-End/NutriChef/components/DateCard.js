@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   Text,
@@ -13,6 +13,8 @@ const DateCard = () => {
   const currentDate = new Date();
   const defaultSelectedDate = currentDate.getDate().toString();
   const [selectedDate, setSelectedDate] = useState(defaultSelectedDate);
+  const scrollViewRef = useRef(null);
+
   // Generate an array of dates for the previous 2 days, current day, and next 4 days
   const dates = [];
   for (let i = -2; i < 5; i++) {
@@ -25,10 +27,22 @@ const DateCard = () => {
 
   const handleDatePress = day => {
     setSelectedDate(day);
+    const selectedIndex = dates.findIndex(dateData => dateData.day === day);
+    const scrollX = (selectedIndex - 1) * 74;
+    scrollViewRef.current.scrollTo({
+      x: scrollX,
+      animated: true,
+    });
   };
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+    <ScrollView
+      ref={scrollViewRef}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      onContentSizeChange={() => {
+        handleDatePress(selectedDate);
+      }}>
       {dates.map((dateData, index) => (
         <TouchableHighlight
           key={index}

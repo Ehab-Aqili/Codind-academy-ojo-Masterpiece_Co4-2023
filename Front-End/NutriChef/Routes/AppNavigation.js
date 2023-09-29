@@ -8,6 +8,7 @@ import SignUp from '../screen/SignUpScreen';
 import RecipesScreen from '../screen/RecipesScreen';
 import SliderOnBoarding from '../components/SliderOnBoarding';
 import LogIn from '../screen/LogIn';
+import MealsScreen from '../screen/MealsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,11 @@ const AppNavigation = () => {
           name="RecipesScreen"
           component={RecipesScreen}
           options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="Meals"
+          component={MealsScreen}
+          options={{title: 'Daily Meal', headerTitleAlign: 'center'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

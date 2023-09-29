@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {FontSize} from '../GlobalStyles';
 
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   txt: {
-    fontSize: FontSize.size_5xl,
+    fontSize: FontSize.size_3xl,
     fontWeight: '700',
   },
 });
