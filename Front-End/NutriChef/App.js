@@ -8,8 +8,13 @@
 
 import React from 'react';
 import AppNavigation from './Routes/AppNavigation';
+import { RecipeProvider } from "./context/RecipeContext"
 function App() {
-  return <AppNavigation />;
+  return (
+    <RecipeProvider>
+      <AppNavigation />
+    </RecipeProvider>
+  );
 }
 
 export default App;

@@ -10,7 +10,7 @@ const RecipesCard = ({kcalNum, recipeName, recipeCategories, recipeImage}) => {
   const cardHeight = screenHeight * 0.17;
   return (
     <View style={[styles.container, {width: cardWidth, height: cardHeight}]}>
-      <Image source={recipeImage} />
+      <Image source={{uri: recipeImage}} style={styles.recipeImage} />
       <View style={styles.cardText}>
         <Text style={styles.kcal}>{kcalNum} Kcal</Text>
         <Text style={styles.RecipeName}>{recipeName}</Text>
@@ -50,5 +50,11 @@ const styles = StyleSheet.create({
   },
   heart: {
     marginBottom: 70,
+  },
+  recipeImage: {
+    width: 100,
+    height: 115,
+    borderRadius: 20,
+    // marginLeft: 10,
   },
 });

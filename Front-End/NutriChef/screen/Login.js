@@ -23,15 +23,15 @@ const LogIn = ({navigation}) => {
   const handleLogin = () => {
     const newErrors = {};
 
-    if (!email) {
-      newErrors.email = 'Email is required';
-    } else if (!isValidEmail(email)) {
-      newErrors.email = 'Invalid email format';
-    }
+    // if (!email) {
+    //   newErrors.email = 'Email is required';
+    // } else if (!isValidEmail(email)) {
+    //   newErrors.email = 'Invalid email format';
+    // }
 
-    if (!password) {
-      newErrors.password = 'Password is required';
-    }
+    // if (!password) {
+    //   newErrors.password = 'Password is required';
+    // }
 
     setErrors(newErrors);
 
