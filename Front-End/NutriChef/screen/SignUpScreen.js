@@ -24,26 +24,8 @@ const SignUp = ({navigation}) => {
     password: '',
     confirmPassword: '',
   });
-  const {signUp, user} = useAuthContext();
+  const {signUp, user, token} = useAuthContext();
 
-  //   const signUp = async () => {
-  //     try {
-  //       const response = await axios.post(
-  //         'https://master-piece.onrender.com/api/user/signup',
-  //         {
-  //           username: username,
-  //           email: email,
-  //           password: password,
-  //           role: 'user',
-  //         },
-  //       );
-  //       setUser(response.data);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  // console.log("response from useState", user)
   const handleSignup = () => {
     const newErrors = {};
 
@@ -73,8 +55,12 @@ const SignUp = ({navigation}) => {
     if (Object.keys(newErrors).length === 0) {
       signUp(username, email, password);
       navigation.navigate('home');
-      console.log('first');
-      console.log(user);
+      // console.log('first');
+      // console.log(token);
+      // console.log(user);
+      console.log(user.username);
+      console.log("***********************************************")
+      console.log(token)
     }
   };
 

@@ -8,7 +8,7 @@ export const useAuthContext = () => {
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
-
+  const [token, setToken] = useState();
   const signUp = async (username, email, password) => {
     try {
       const response = await axios.post(
@@ -20,16 +20,19 @@ export const AuthProvider = ({children}) => {
           role: 'user',
         },
       );
-      setUser(response.data);
-      console.log(response.data);
+      setUser(response.data.user);
+      setToken(response.data.token);
+      //   console.log(response.data.user);
     } catch (error) {
       console.error(error);
     }
   };
 
+
   const authContextValue = {
     user,
     signUp,
+    token,
   };
 
   return (
