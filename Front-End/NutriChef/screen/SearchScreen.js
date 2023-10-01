@@ -18,10 +18,10 @@ const SearchScreen = () => {
   const {recipes, loading} = useRecipeContext();
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
-
+  console.log('search', recipes.recipes);
   const handleSearch = query => {
-    const filteredRecipes = recipes.filter(recipe =>
-      recipe.recipe_name.toLowerCase().includes(query.toLowerCase()),
+    const filteredRecipes = recipes.recipes.filter(recipe =>
+      recipe.recipe_Name.toLowerCase().includes(query.toLowerCase()),
     );
     setSearchResults(filteredRecipes);
     setShowSearchResults(true);
@@ -86,9 +86,9 @@ const SearchScreen = () => {
       {showSearchResults ? (
         <View style={styles.ifSearch}>
           <ScrollView>
-          {searchResults.map(item => (
-            <SearchItemScreen key={item._id} recipeData={item} />
-          ))}
+            {searchResults.map(item => (
+              <SearchItemScreen key={item._id} recipeData={item} />
+            ))}
           </ScrollView>
           <CustomButton ButtonTxt={'Go Back'} event={handleResetSearch} />
         </View>

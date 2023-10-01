@@ -8,12 +8,15 @@
 
 import React from 'react';
 import AppNavigation from './Routes/AppNavigation';
-import { RecipeProvider } from "./context/RecipeContext"
+import {RecipeProvider} from './context/RecipeContext';
+import {AuthProvider} from './context/AuthContext';
 function App() {
   return (
-    <RecipeProvider>
-      <AppNavigation />
-    </RecipeProvider>
+    <AuthProvider>
+      <RecipeProvider>
+        <AppNavigation />
+      </RecipeProvider>
+    </AuthProvider>
   );
 }
 

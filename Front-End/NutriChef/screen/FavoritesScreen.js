@@ -49,14 +49,16 @@ const recipesData = [
     kcalNum: 231,
     recipeName: 'Chopped Spring Ramen',
     recipeCategories: 'Scallions & tomatoes',
-    recipeImage: require('../assets/ResipeOne.png'),
+    recipeImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUCGaX78AYv4mva5Yl1sobNYYM8xNbxrHZfaRuiqvzyDXDthjyWZuTeFP0Jc5UvnhBlWo&usqp=CAU',
   },
   {
     id: 2,
     kcalNum: 381,
     recipeName: 'Chicken Tandoori',
     recipeCategories: 'Chicken & Salad',
-    recipeImage: require('../assets/ResipeTwo.png'),
+    recipeImage:
+      'https://thewoksoflife.com/wp-content/uploads/2016/06/grilled-tandoori-chicken-11.jpg',
   },
 ];
 const ImageFoodNotFound = require('../assets/FoodNotFound.png');

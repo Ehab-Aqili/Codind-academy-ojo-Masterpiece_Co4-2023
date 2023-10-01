@@ -10,20 +10,40 @@ import {
 } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import {Color, FontSize} from '../GlobalStyles';
-
+import {useAuthContext} from '../context/AuthContext';
+import axios from 'axios';
 const SignUp = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  // const [user, setUser] = useState();
   const [errors, setErrors] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
+  const {signUp, user} = useAuthContext();
 
+  //   const signUp = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         'https://master-piece.onrender.com/api/user/signup',
+  //         {
+  //           username: username,
+  //           email: email,
+  //           password: password,
+  //           role: 'user',
+  //         },
+  //       );
+  //       setUser(response.data);
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  // console.log("response from useState", user)
   const handleSignup = () => {
     const newErrors = {};
 
@@ -51,8 +71,10 @@ const SignUp = ({navigation}) => {
 
     // If there are no errors, proceed with signup
     if (Object.keys(newErrors).length === 0) {
+      signUp(username, email, password);
       navigation.navigate('home');
       console.log('first');
+      console.log(user);
     }
   };
 

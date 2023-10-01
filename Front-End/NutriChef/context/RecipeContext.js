@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from "axios" 
+import React, {createContext, useContext, useState, useEffect} from 'react';
+import axios from 'axios';
 // Create the context
 const RecipeContext = createContext();
 
@@ -9,7 +9,7 @@ export const useRecipeContext = () => {
 };
 
 // Create the context provider component
-export const RecipeProvider = ({ children }) => {
+export const RecipeProvider = ({children}) => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,9 +17,10 @@ export const RecipeProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        'https://master-piece.onrender.com/api/recipes/get-recipes'
+        'https://master-piece.onrender.com/api/recipes/get-recipes',
       );
-      setRecipes(response.data.recipes);
+      setRecipes(response.data);
+      // console.log(response.data);
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -32,7 +33,7 @@ export const RecipeProvider = ({ children }) => {
   }, []);
 
   return (
-    <RecipeContext.Provider value={{ recipes, loading }}>
+    <RecipeContext.Provider value={{recipes, loading}}>
       {children}
     </RecipeContext.Provider>
   );
