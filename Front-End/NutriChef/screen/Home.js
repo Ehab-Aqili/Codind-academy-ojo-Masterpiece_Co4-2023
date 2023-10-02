@@ -12,13 +12,12 @@ import {Color, FontFamily} from '../GlobalStyles';
 import ScrollWithDot from '../components/ScrollWithDot';
 import CardCategories from '../components/CardCategories';
 import Loading from '../components/Loading';
-import {useAuthContext} from '../context/AuthContext';
+import {useLoginContext} from '../context/loginContext';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const { user, token} = useAuthContext();
-// console.log(user)
-// console.log(token)
+  // console.log(user)
+  // console.log(token)
   const CardData = [
     {
       id: 1,
@@ -82,10 +81,12 @@ of Card 1`,
       </View>
     );
   }
+  const {user} = useLoginContext();
+
   return (
     <View style={styles.mainView}>
       <View style={styles.helloTxt}>
-        <Text style={styles.greenText}>Hello UserName,</Text>
+        <Text style={styles.greenText}>Hello {user.username},</Text>
         <Text style={styles.normalText}>Find, track and eat healthy food.</Text>
       </View>
       <View style={styles.cardHome}>

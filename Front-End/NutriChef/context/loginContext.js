@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 const LoginContext = createContext();
 
@@ -25,7 +25,9 @@ export const LoginProvider = ({children}) => {
       console.error(error);
     }
   };
-
+  useEffect(() => {
+    login();
+  }, []);
   console.log(user);
   // console.log(token);
   const loginContextValue = {

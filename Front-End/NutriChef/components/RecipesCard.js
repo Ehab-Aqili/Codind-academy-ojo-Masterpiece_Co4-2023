@@ -7,9 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {Color, FontSize} from '../GlobalStyles';
+import axios from 'axios';
 
+import {useLoginContext} from '../context/loginContext';
 const RecipesCard = ({
   kcalNum,
   recipeName,
@@ -23,6 +25,8 @@ const RecipesCard = ({
   const screenHeight = Dimensions.get('window').height;
   const cardWidth = screenWidth * 0.85;
   const cardHeight = screenHeight * 0.17;
+  const [isSaved, setIsSaved] = useState(false);
+
   const handelNavigation = () => {
     navigation.navigate('RecipesScreen', {
       recipeName,
@@ -32,25 +36,70 @@ const RecipesCard = ({
       kcalNum,
     });
   };
-  let imageSource = '';
 
+  const {user, token} = useLoginContext();
+  
+  const handleSavePress = async () => {
+    try {
+      if (isSaved) {
+        // Remove from favorites
+        const response = await axios.patch(
+          'https://master-piece.onrender.com/api/user/remove-favorite',
+          {userId: user.userId, recipeId: recipeId},
+          {
+            headers: {
+              Authorization: `bearer ${token}`,
+            },
+          },
+        );
+        console.log(response);
+      }
+     
+      else {
+        // Add to favorites
+        const response = await axios.patch(
+          'https://master-piece.onrender.com/api/user/add-favorite',
+          {userId: user.userId, recipeId: recipeId},
+          {
+            headers: {
+              Authorization: `bearer ${token}`,
+            },
+          },
+        );
+        console.log(response);
+      }
+      // Toggle the save state
+      setIsSaved(!isSaved);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   if (screenName === 1) {
     imageSource = require('../assets/Heart.png');
-  } else {
-    imageSource = require('../assets/HeartLight.png');
-  }
+  } 
   return (
-    <TouchableOpacity onPress={() => handelNavigation()}>
-      <View style={[styles.container, {width: cardWidth, height: cardHeight}]}>
+    <View style={[styles.container, {width: cardWidth, height: cardHeight}]}>
+      <TouchableOpacity
+        style={[styles.container]}
+        onPress={() => handelNavigation()}>
         <Image source={{uri: recipeImage}} style={styles.recipeImage} />
         <View style={styles.cardText}>
           <Text style={styles.kcal}>{kcalNum} Kcal</Text>
           <Text style={styles.RecipeName}>{recipeName}</Text>
           <Text style={styles.categories}>{recipeCategories}</Text>
         </View>
-        <Image style={styles.heart} source={imageSource} />
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleSavePress}>
+        <Image
+          style={styles.heart}
+          source={
+            isSaved
+              ? require('../assets/Heart.png') 
+              : require('../assets/HeartLight.png') 
+          }
+        />
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -83,11 +132,11 @@ const styles = StyleSheet.create({
   },
   heart: {
     marginBottom: 70,
+    right: 10,
   },
   recipeImage: {
     width: 100,
     height: 115,
     borderRadius: 20,
-    // marginLeft: 10,
   },
 });

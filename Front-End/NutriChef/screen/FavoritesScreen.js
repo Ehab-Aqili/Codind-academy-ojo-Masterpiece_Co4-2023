@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   Image,
@@ -15,7 +15,7 @@ import RecipesCard from '../components/RecipesCard';
 import CustomButton from '../components/CustomButton';
 import {Color} from '../GlobalStyles';
 import {useLoginContext} from '../context/loginContext';
-import {useRecipeContext} from '../context/RecipeContext';
+import axios from 'axios';
 
 const data = [
   {
@@ -73,18 +73,29 @@ const FavoritesScreen = ({navigation}) => {
   const lastCardWidth = screenWidth * 0.25;
   const lastCardHeight = screenHeight * 0.13;
   const recipesCardHeight = screenHeight * 0.5;
-  const {user} = useLoginContext();
-  // console.log(user.favorite.map(item => item));
+  const {user, token} = useLoginContext();
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  useEffect(() => {
+    const getFavoriteRecipes = async () => {
+      try {
+        const response = await axios.get(
+          `https://master-piece.onrender.com/api/user/get-favorite/${user.userId}/`,
+          {
+            headers: {
+              Authorization: `bearer ${token}`,
+            },
+          },
+        );
+        // console.log('favorite recipes', response.data.userFavorite);
+        setFavoriteRecipes(response.data.userFavorite);
+      } catch (error) {
+        console.error('Error fetching favorite recipes:', error);
+      }
+    };
 
-  const userFavoriteIds = user.favorite;
-  const {recipes} = useRecipeContext();
-  const recipesData = recipes.recipes.map(item => item._id);
-  const favoriteRecipes = recipes.recipes.filter(recipe => {
-    return userFavoriteIds.includes(recipe._id);
-  });
-  // const favoriteRecipes = recipesData.filter(item => userFavoriteIds.includes(item))
+    getFavoriteRecipes();
+  }, [favoriteRecipes]);
 
-  // console.log(favoriteRecipes);
   return (
     <View style={styles.mainView}>
       <DualButton setActiveButton={setActiveTab} activeButton={activeTab} />

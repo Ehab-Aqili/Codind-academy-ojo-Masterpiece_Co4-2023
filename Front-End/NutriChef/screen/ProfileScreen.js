@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Color, FontFamily} from '../GlobalStyles';
 import ProfileCategories from '../components/ProfileCategories';
+import {useLoginContext} from '../context/loginContext';
 
 const PorfileScreen = ({navigation}) => {
   const data = [
@@ -37,10 +38,12 @@ const PorfileScreen = ({navigation}) => {
       isCard: 'Logout',
     },
   ];
+  const {user} = useLoginContext();
+
   return (
     <View style={styles.mainView}>
       <Image style={styles.UserImg} source={require('../assets/UserImg.jpg')} />
-      <Text style={styles.UserName}>Ihab Aloqaily</Text>
+      <Text style={styles.UserName}>{user.username}</Text>
       {data.map(item => (
         <ProfileCategories
           style={styles.profileCard}
