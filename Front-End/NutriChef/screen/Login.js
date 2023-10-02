@@ -13,7 +13,7 @@ import {Color, FontFamily, FontSize} from '../GlobalStyles';
 import {useLoginContext} from '../context/loginContext';
 
 const LogIn = ({navigation}) => {
-const {login} = useLoginContext();
+  const {login} = useLoginContext();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,7 +41,9 @@ const {login} = useLoginContext();
     // If there are no errors, proceed with login
     if (Object.keys(newErrors).length === 0) {
       login(email, password);
+    if(email && password !== undefined || null){
       navigation.navigate('home');
+    }
 
       console.log('Logging in');
     }

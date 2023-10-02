@@ -13,9 +13,11 @@ import ScrollWithDot from '../components/ScrollWithDot';
 import CardCategories from '../components/CardCategories';
 import Loading from '../components/Loading';
 import {useLoginContext} from '../context/loginContext';
-
 const Home = () => {
+  const {user} = useLoginContext();
+
   const [isLoading, setIsLoading] = useState(true);
+
   // console.log(user)
   // console.log(token)
   const CardData = [
@@ -62,7 +64,7 @@ of Card 1`,
   useEffect(() => {
     const delay = setTimeout(() => {
       setIsLoading(false);
-    }, 700);
+    }, 1000);
     return () => clearTimeout(delay);
   }, []);
   if (isLoading) {
@@ -81,8 +83,7 @@ of Card 1`,
       </View>
     );
   }
-  const {user} = useLoginContext();
-
+  // console.log("sFASFASDFASFASF",user);
   return (
     <View style={styles.mainView}>
       <View style={styles.helloTxt}>
