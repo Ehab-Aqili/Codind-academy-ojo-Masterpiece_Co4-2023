@@ -9,12 +9,17 @@ import {
   Dimensions,
 } from 'react-native';
 import {FontSize} from '../GlobalStyles';
+import {useLoginContext} from '../context/loginContext';
+import axios from 'axios';
 
-const RecipesScreen = () => {
+const RecipesScreen = ({route}) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [likeCount, setLikeCount] = useState(42); // Initialize with the actual number of likes
-
+  const {recipeName, recipeCategories, recipeId, recipeImage, kcalNum} =
+    route.params;
+  const {user, token} = useLoginContext();
+  // console.log(token);
   const handleLikePress = () => {
     if (isLiked) {
       // If already liked, decrease the like count by 1
@@ -28,9 +33,39 @@ const RecipesScreen = () => {
     setIsLiked(!isLiked);
   };
 
-  const handleSavePress = () => {
-    // Toggle the save state
-    setIsSaved(!isSaved);
+  const handleSavePress = async () => {
+    try {
+      if (isSaved) {
+        // Remove from favorites
+        const response = await axios.patch(
+          'https://master-piece.onrender.com/api/user/remove-favorite',
+          {userId: user.userId, recipeId: recipeId},
+          {
+            headers: {
+              Authorization: `bearer ${token}`,
+            },
+          },
+        );
+        console.log(response);
+      } else {
+        // Add to favorites
+        const response = await axios.patch(
+          'https://master-piece.onrender.com/api/user/add-favorite',
+          {userId: user.userId, recipeId: recipeId},
+          {
+            headers: {
+              Authorization: `bearer ${token}`,
+            },
+          },
+        );
+        console.log(response);
+      }
+
+      // Toggle the save state
+      setIsSaved(!isSaved);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -39,6 +74,8 @@ const RecipesScreen = () => {
         source={require('../assets/burger.png')} // Replace 'recipe_image_url' with the actual image URL
         style={styles.recipeImage}
       />
+      <Text style={styles.title}>{recipeName}</Text>
+      <View style={[styles.nutritionBar, styles.divider]}></View>
       {/* Like and Save Bar */}
       <View style={styles.buttonBar}>
         <View style={styles.buttonRow}>
@@ -70,7 +107,7 @@ const RecipesScreen = () => {
       {/* Nutrition Information Bar */}
       <Text style={styles.title}>Nutrition Information</Text>
       <View style={[styles.nutritionBar, styles.divider]}>
-        <Text>Calories: 300</Text>
+        <Text>Calories: {kcalNum}</Text>
         <Text>Carbs: 40g</Text>
         <Text>Fat: 10g</Text>
         <Text>Protein: 20g</Text>

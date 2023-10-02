@@ -11,20 +11,18 @@ import {
 import CustomButton from '../components/CustomButton';
 import {Color, FontSize} from '../GlobalStyles';
 import {useAuthContext} from '../context/AuthContext';
-import axios from 'axios';
 const SignUp = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  // const [user, setUser] = useState();
   const [errors, setErrors] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const {signUp, user, token} = useAuthContext();
+  const {signUp} = useAuthContext();
 
   const handleSignup = () => {
     const newErrors = {};
@@ -55,12 +53,9 @@ const SignUp = ({navigation}) => {
     if (Object.keys(newErrors).length === 0) {
       signUp(username, email, password);
       navigation.navigate('home');
-      // console.log('first');
-      // console.log(token);
       // console.log(user);
-      console.log(user.username);
-      console.log("***********************************************")
-      console.log(token)
+      // console.log("***********************************************")
+      // console.log(token)
     }
   };
 

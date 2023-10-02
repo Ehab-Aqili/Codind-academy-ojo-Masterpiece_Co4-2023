@@ -20,7 +20,7 @@ const SearchItemScreen = ({recipeData}) => {
 export default SearchItemScreen;
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  SearchedCard: {
     paddingTop: 30,
     paddingHorizontal: 20,
     paddingBottom: 10,

@@ -42,7 +42,7 @@ const AppNavigation = () => {
         <Stack.Screen
           name="RecipesScreen"
           component={RecipesScreen}
-          options={{headerShown: false}}
+          options={{headerTitleAlign: 'center'}}
         />
         <Stack.Screen
           name="Meals"

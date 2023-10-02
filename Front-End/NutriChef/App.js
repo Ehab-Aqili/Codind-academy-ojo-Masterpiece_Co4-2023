@@ -10,13 +10,16 @@ import React from 'react';
 import AppNavigation from './Routes/AppNavigation';
 import {RecipeProvider} from './context/RecipeContext';
 import {AuthProvider} from './context/AuthContext';
+import {LoginProvider} from './context/loginContext';
 function App() {
   return (
-    <AuthProvider>
-      <RecipeProvider>
-        <AppNavigation />
-      </RecipeProvider>
-    </AuthProvider>
+    <LoginProvider>
+      <AuthProvider>
+        <RecipeProvider>
+          <AppNavigation />
+        </RecipeProvider>
+      </AuthProvider>
+    </LoginProvider>
   );
 }
 

@@ -14,6 +14,8 @@ import NotFound from '../components/NotFound';
 import RecipesCard from '../components/RecipesCard';
 import CustomButton from '../components/CustomButton';
 import {Color} from '../GlobalStyles';
+import {useLoginContext} from '../context/loginContext';
+import {useRecipeContext} from '../context/RecipeContext';
 
 const data = [
   {
@@ -71,7 +73,18 @@ const FavoritesScreen = ({navigation}) => {
   const lastCardWidth = screenWidth * 0.25;
   const lastCardHeight = screenHeight * 0.13;
   const recipesCardHeight = screenHeight * 0.5;
+  const {user} = useLoginContext();
+  // console.log(user.favorite.map(item => item));
 
+  const userFavoriteIds = user.favorite;
+  const {recipes} = useRecipeContext();
+  const recipesData = recipes.recipes.map(item => item._id);
+  const favoriteRecipes = recipes.recipes.filter(recipe => {
+    return userFavoriteIds.includes(recipe._id);
+  });
+  // const favoriteRecipes = recipesData.filter(item => userFavoriteIds.includes(item))
+
+  // console.log(favoriteRecipes);
   return (
     <View style={styles.mainView}>
       <DualButton setActiveButton={setActiveTab} activeButton={activeTab} />
@@ -111,18 +124,20 @@ const FavoritesScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
         )
-      ) : recipesData.length !== 0 ? (
+      ) : favoriteRecipes.length !== 0 ? (
         <>
           <ScrollView
             style={[styles.recipesContainer, {height: recipesCardHeight}]}
             contentContainerStyle={styles.recipesContent}>
-            {recipesData.map(item => (
+            {favoriteRecipes.map(item => (
               <RecipesCard
-                key={item.id}
-                kcalNum={item.kcalNum}
-                recipeName={item.recipeName}
-                recipeCategories={item.recipeCategories}
-                recipeImage={item.recipeImage}
+                navigation={navigation}
+                recipeId={item._id}
+                kcalNum={item.recipe_calories}
+                recipeName={item.recipe_Name}
+                recipeCategories={item.recipe_Categories}
+                recipeImage={item.recipe_image}
+                screenName={1}
               />
             ))}
           </ScrollView>

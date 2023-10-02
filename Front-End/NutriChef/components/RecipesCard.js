@@ -1,23 +1,56 @@
 /* eslint-disable prettier/prettier */
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {Color, FontSize} from '../GlobalStyles';
 
-const RecipesCard = ({kcalNum, recipeName, recipeCategories, recipeImage}) => {
+const RecipesCard = ({
+  kcalNum,
+  recipeName,
+  recipeCategories,
+  recipeImage,
+  recipeId,
+  navigation,
+  screenName,
+}) => {
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const cardWidth = screenWidth * 0.85;
   const cardHeight = screenHeight * 0.17;
+  const handelNavigation = () => {
+    navigation.navigate('RecipesScreen', {
+      recipeName,
+      recipeCategories,
+      recipeImage,
+      recipeId,
+      kcalNum,
+    });
+  };
+  let imageSource = '';
+
+  if (screenName === 1) {
+    imageSource = require('../assets/Heart.png');
+  } else {
+    imageSource = require('../assets/HeartLight.png');
+  }
   return (
-    <View style={[styles.container, {width: cardWidth, height: cardHeight}]}>
-      <Image source={{uri: recipeImage}} style={styles.recipeImage} />
-      <View style={styles.cardText}>
-        <Text style={styles.kcal}>{kcalNum} Kcal</Text>
-        <Text style={styles.RecipeName}>{recipeName}</Text>
-        <Text style={styles.categories}>{recipeCategories}</Text>
+    <TouchableOpacity onPress={() => handelNavigation()}>
+      <View style={[styles.container, {width: cardWidth, height: cardHeight}]}>
+        <Image source={{uri: recipeImage}} style={styles.recipeImage} />
+        <View style={styles.cardText}>
+          <Text style={styles.kcal}>{kcalNum} Kcal</Text>
+          <Text style={styles.RecipeName}>{recipeName}</Text>
+          <Text style={styles.categories}>{recipeCategories}</Text>
+        </View>
+        <Image style={styles.heart} source={imageSource} />
       </View>
-      <Image style={styles.heart} source={require('../assets/Heart.png')} />
-    </View>
+    </TouchableOpacity>
   );
 };
 

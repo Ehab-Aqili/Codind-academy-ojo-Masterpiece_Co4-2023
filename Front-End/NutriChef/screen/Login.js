@@ -10,8 +10,11 @@ import {
 } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import {Color, FontFamily, FontSize} from '../GlobalStyles';
+import {useLoginContext} from '../context/loginContext';
 
 const LogIn = ({navigation}) => {
+const {login} = useLoginContext();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,21 +26,23 @@ const LogIn = ({navigation}) => {
   const handleLogin = () => {
     const newErrors = {};
 
-    // if (!email) {
-    //   newErrors.email = 'Email is required';
-    // } else if (!isValidEmail(email)) {
-    //   newErrors.email = 'Invalid email format';
-    // }
+    if (!email) {
+      newErrors.email = 'Email is required';
+    } else if (!isValidEmail(email)) {
+      newErrors.email = 'Invalid email format';
+    }
 
-    // if (!password) {
-    //   newErrors.password = 'Password is required';
-    // }
+    if (!password) {
+      newErrors.password = 'Password is required';
+    }
 
     setErrors(newErrors);
 
     // If there are no errors, proceed with login
     if (Object.keys(newErrors).length === 0) {
+      login(email, password);
       navigation.navigate('home');
+
       console.log('Logging in');
     }
   };

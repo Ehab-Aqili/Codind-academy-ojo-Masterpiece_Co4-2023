@@ -12,10 +12,13 @@ import {Color, FontFamily} from '../GlobalStyles';
 import ScrollWithDot from '../components/ScrollWithDot';
 import CardCategories from '../components/CardCategories';
 import Loading from '../components/Loading';
+import {useAuthContext} from '../context/AuthContext';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-
+  const { user, token} = useAuthContext();
+// console.log(user)
+// console.log(token)
   const CardData = [
     {
       id: 1,
@@ -60,7 +63,7 @@ of Card 1`,
   useEffect(() => {
     const delay = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 700);
     return () => clearTimeout(delay);
   }, []);
   if (isLoading) {

@@ -13,8 +13,9 @@ import {Color} from '../GlobalStyles';
 import {useRecipeContext} from '../context/RecipeContext';
 import SearchItemScreen from './SearchItemScreen';
 import CustomButton from '../components/CustomButton';
+import RecipesCard from '../components/RecipesCard';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
   const {recipes, loading} = useRecipeContext();
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -87,7 +88,17 @@ const SearchScreen = () => {
         <View style={styles.ifSearch}>
           <ScrollView>
             {searchResults.map(item => (
-              <SearchItemScreen key={item._id} recipeData={item} />
+              <View key={item._id} style={styles.SearchedCard}>
+                <RecipesCard
+                  navigation={navigation}
+                  recipeId={item._id}
+                  kcalNum={item.recipe_calories}
+                  recipeName={item.recipe_Name}
+                  recipeCategories={item.recipe_Categories}
+                  recipeImage={item.recipe_image}
+                  screenName={"notFavorite"}
+                />
+              </View>
             ))}
           </ScrollView>
           <CustomButton ButtonTxt={'Go Back'} event={handleResetSearch} />
@@ -142,6 +153,12 @@ const styles = StyleSheet.create({
   ifSearch: {
     alignItems: 'center',
     height: '100%',
+  },
+  SearchedCard: {
+    paddingTop: 30,
+    paddingHorizontal: 20,
+    paddingBottom: 10,
+    backgroundColor: Color.bordersBackgroundsWhiteBackground,
   },
 });
 

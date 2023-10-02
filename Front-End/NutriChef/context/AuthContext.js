@@ -28,7 +28,8 @@ export const AuthProvider = ({children}) => {
     }
   };
 
-
+  console.log(user);
+  // console.log(token);
   const authContextValue = {
     user,
     signUp,
