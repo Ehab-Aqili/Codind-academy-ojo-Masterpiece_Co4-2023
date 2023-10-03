@@ -8,24 +8,54 @@ import {
   Button,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {Color, FontSize} from '../GlobalStyles';
 import CustomButton from '../components/CustomButton';
+import {useLoginContext} from '../context/loginContext';
+import axios from 'axios';
 const ProfileInfoScreen = () => {
+  const {user, token} = useLoginContext();
   const [image, setImage] = useState(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  //   const [birth, setBirth] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [name, setName] = useState(user.username);
+  const [calories, setCalories] = useState(user.calories.toString());
+  const [message, setMessage] = useState('');
+  // const [birth, setBirth] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState(user.date_birth);
+  console.log(user);
+  const updateUser = async () => {
+    const response = await axios.patch(
+      'https://master-piece.onrender.com/api/user/update-user',
+      {
+        id: user.userId,
+        username: name,
+        calories: parseFloat(calories),
+        date_birth: dateOfBirth,
+      },
+      {
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
+      },
+    );
+    // setMessage(response.data.message)
+    Alert.alert(
+      'Update',
+      `   ${response.data.message},
+   This process may take an hour to confirm.`,
+      [{text: 'OK', onPress: () => console.log('Update is Done ')}],
+    );
+    console.log(response.data);
+  };
 
   const resetPassword = () => {
     // Implement your password reset logic here
     console.log(`Reset password for ${name} with email ${email}`);
   };
 
-  const saveChanges = () => {
-    console.log(`Save changes for ${name} with email ${email}`);
-  };
+  // const saveChanges = () => {
+  //   console.log(`Save changes for ${name} with email ${email}`);
+  // };
   const handleDateOfBirthChange = text => {
     const cleanedText = text.replace(/[^0-9]/g, '').slice(0, 8);
     const day = cleanedText.slice(0, 2);
@@ -45,7 +75,6 @@ const ProfileInfoScreen = () => {
     }${year}`;
     setDateOfBirth(formattedDate);
   };
-
   return (
     <View style={styles.container}>
       <Image style={styles.UserImg} source={require('../assets/UserImg.jpg')} />
@@ -63,10 +92,10 @@ const ProfileInfoScreen = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={text => setEmail(text)}
-        keyboardType="email-address"
+        placeholder="Inter Your Daily Calories"
+        value={calories}
+        onChangeText={text => setCalories(text)}
+        keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
@@ -81,7 +110,7 @@ const ProfileInfoScreen = () => {
           Reset Password
         </Text>
       </Text>
-      <CustomButton ButtonTxt="Save Changes" event={saveChanges} />
+      <CustomButton ButtonTxt="Save Changes" event={updateUser} />
     </View>
   );
 };

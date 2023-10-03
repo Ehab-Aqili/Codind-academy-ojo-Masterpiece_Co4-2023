@@ -140,14 +140,17 @@ const FavoritesScreen = ({navigation}) => {
           <ScrollView
             style={[styles.recipesContainer, {height: recipesCardHeight}]}
             contentContainerStyle={styles.recipesContent}>
-            {favoriteRecipes.map(item => (
+            {favoriteRecipes.map((item, index) => (
               <RecipesCard
+                key={index}
                 navigation={navigation}
                 recipeId={item._id}
                 kcalNum={item.recipe_calories}
-                recipeName={item.recipe_Name}
-                recipeCategories={item.recipe_Categories}
+                recipeName={item.recipe_name}
+                recipeCategories={item.recipe_categories}
                 recipeImage={item.recipe_image}
+                recipeDes={item.recipe_des}
+                recipeSteps={item.recipe_steps}
                 screenName={1}
               />
             ))}

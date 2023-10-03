@@ -8,7 +8,7 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import {FontSize} from '../GlobalStyles';
+import {Color, FontSize} from '../GlobalStyles';
 import {useLoginContext} from '../context/loginContext';
 import axios from 'axios';
 
@@ -16,8 +16,15 @@ const RecipesScreen = ({route}) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [likeCount, setLikeCount] = useState(42); // Initialize with the actual number of likes
-  const {recipeName, recipeCategories, recipeId, recipeImage, kcalNum} =
-    route.params;
+  const {
+    recipeName,
+    recipeCategories,
+    recipeSteps,
+    recipeDes,
+    recipeId,
+    recipeImage,
+    kcalNum,
+  } = route.params;
   const {user, token} = useLoginContext();
   // console.log(token);
   const handleLikePress = () => {
@@ -71,10 +78,11 @@ const RecipesScreen = ({route}) => {
   return (
     <ScrollView style={styles.container}>
       <Image
-        source={require('../assets/burger.png')} // Replace 'recipe_image_url' with the actual image URL
+        source={{uri: recipeImage}} // Replace 'recipe_image_url' with the actual image URL
         style={styles.recipeImage}
       />
       <Text style={styles.title}>{recipeName}</Text>
+      <Text style={styles.subTitle}>{recipeCategories}</Text>
       <View style={[styles.nutritionBar, styles.divider]}></View>
       {/* Like and Save Bar */}
       <View style={styles.buttonBar}>
@@ -107,49 +115,39 @@ const RecipesScreen = ({route}) => {
       {/* Nutrition Information Bar */}
       <Text style={styles.title}>Nutrition Information</Text>
       <View style={[styles.nutritionBar, styles.divider]}>
-        <Text>Calories: {kcalNum}</Text>
-        <Text>Carbs: 40g</Text>
-        <Text>Fat: 10g</Text>
-        <Text>Protein: 20g</Text>
+        <Text style={[styles.info, {backgroundColor: Color.darkseagreen}]}>
+          Calories: {kcalNum}
+        </Text>
+        <Text style={[styles.info, {backgroundColor: Color.salmon_100}]}>
+          Carbs: 40g
+        </Text>
+        <Text style={[styles.info, {backgroundColor: '#9e9bc7'}]}>
+          Fat: 10g
+        </Text>
+        <Text style={[styles.info, {backgroundColor: '#ffab46'}]}>
+          Protein: 20g
+        </Text>
       </View>
 
       {/* Ingredients Bar */}
       <Text style={styles.title}>Ingredients:</Text>
       <View style={[styles.ingredientsBar, styles.divider]}>
-        <Text style={styles.Item}>
-          <Image
-            style={styles.buttonImage}
-            source={require('../assets/FoodItemTwo.png')}
-          />
-          Ingredient 1
-        </Text>
-        <Text style={styles.Item}>
-          <Image
-            style={styles.buttonImage}
-            source={require('../assets/FoodItemTwo.png')}
-          />
-          Ingredient 2
-        </Text>
-        <Text style={styles.Item}>
-          <Image
-            style={styles.buttonImage}
-            source={require('../assets/FoodItemTwo.png')}
-          />
-          Ingredient 3
-        </Text>
-
+        {recipeSteps.map((item, index) => (
+          <Text key={index} style={styles.Item}>
+            <Image
+              style={styles.buttonImage}
+              source={require('../assets/FoodItemTwo.png')}
+            />
+            {item}
+          </Text>
+        ))}
         {/* Add more ingredients as needed */}
       </View>
 
       {/* Directions Bar */}
       <Text style={styles.title}>Directions:</Text>
       <View style={styles.directionsBar}>
-        <Text style={styles.directionText}>
-          aaaaaaaaaaaasknflkasnflasnflasnsflkasbnfl nflsdlgfnds'lakgnsldkgk sdo
-          ch;idu f
-          ;sgnkadlncann;iopewwepmomi[rchoi[mrccrssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssogmi[himgciomaimcgimocmhirrcghmirgcmircaghimrcghmicrghmicghmiwhmcawghmchmpcgarwhmps
-          nflmasm,,lks s.nd
-        </Text>
+        <Text style={styles.directionText}>{recipeDes}</Text>
       </View>
     </ScrollView>
   );
@@ -192,6 +190,8 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   ingredientsBar: {
+    alignItems: 'center',
+    // justifyContent: 'space-between',
     backgroundColor: 'white',
     padding: 10,
   },
@@ -205,12 +205,30 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   Item: {
-    fontSize: FontSize.size_lg,
+    fontSize: FontSize.size_mid,
     fontWeight: '700',
+    width: '90%',
+    borderWidth: 1,
+    margin: 10,
+    padding: 10,
+    borderRadius: 20,
+    borderColor: '#ccc',
+    backgroundColor: Color.whitesmoke,
+    // justifyContent: 'center'
+    // alignItems: 'center',
   },
   directionText: {
     paddingHorizontal: 20,
-    fontSize: FontSize.size_lg,
+    fontSize: FontSize.size_mid,
+  },
+  info: {
+    padding: 6,
+    fontWeight: 'bold',
+    borderRadius: 10,
+  },
+  subTitle: {
+    padding: 10,
+    fontSize: FontSize.size_mid,
   },
 });
 

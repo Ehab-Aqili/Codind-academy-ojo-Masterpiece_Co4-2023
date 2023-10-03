@@ -25,9 +25,9 @@ export const LoginProvider = ({children}) => {
       console.error(error);
     }
   };
-  useEffect(() => {
-    login();
-  }, []);
+  // useEffect(() => {
+  //   login();
+  // }, []);
   console.log(user);
   // console.log(token);
   const loginContextValue = {

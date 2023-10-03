@@ -22,7 +22,7 @@ const SearchScreen = ({navigation}) => {
   console.log('search', recipes.recipes);
   const handleSearch = query => {
     const filteredRecipes = recipes.recipes.filter(recipe =>
-      recipe.recipe_Name.toLowerCase().includes(query.toLowerCase()),
+      recipe.recipe_name.toLowerCase().includes(query.toLowerCase()),
     );
     setSearchResults(filteredRecipes);
     setShowSearchResults(true);
@@ -86,21 +86,25 @@ const SearchScreen = ({navigation}) => {
 
       {showSearchResults ? (
         <View style={styles.ifSearch}>
-          <ScrollView>
-            {searchResults.map(item => (
-              <View key={item._id} style={styles.SearchedCard}>
-                <RecipesCard
-                  navigation={navigation}
-                  recipeId={item._id}
-                  kcalNum={item.recipe_calories}
-                  recipeName={item.recipe_Name}
-                  recipeCategories={item.recipe_Categories}
-                  recipeImage={item.recipe_image}
-                  screenName={"notFavorite"}
-                />
-              </View>
-            ))}
-          </ScrollView>
+          <View>
+            <ScrollView>
+              {searchResults.map(item => (
+                <View key={item._id} style={styles.SearchedCard}>
+                  <RecipesCard
+                    navigation={navigation}
+                    recipeId={item._id}
+                    kcalNum={item.recipe_calories}
+                    recipeName={item.recipe_name}
+                    recipeCategories={item.recipe_categories}
+                    recipeImage={item.recipe_image}
+                    recipeDes={item.recipe_des}
+                    recipeSteps={item.recipe_steps}
+                    screenName={'notFavorite'}
+                  />
+                </View>
+              ))}
+            </ScrollView>
+          </View>
           <CustomButton ButtonTxt={'Go Back'} event={handleResetSearch} />
         </View>
       ) : (
@@ -152,12 +156,12 @@ const styles = StyleSheet.create({
   },
   ifSearch: {
     alignItems: 'center',
-    height: '100%',
+    height: '94%',
   },
   SearchedCard: {
     paddingTop: 30,
-    paddingHorizontal: 20,
-    paddingBottom: 10,
+    // paddingHorizontal: 20,
+    // paddingBottom: 10,
     backgroundColor: Color.bordersBackgroundsWhiteBackground,
   },
 });

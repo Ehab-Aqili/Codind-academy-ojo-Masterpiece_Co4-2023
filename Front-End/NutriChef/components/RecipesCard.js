@@ -18,6 +18,8 @@ const RecipesCard = ({
   recipeCategories,
   recipeImage,
   recipeId,
+  recipeSteps,
+  recipeDes,
   navigation,
   screenName,
 }) => {
@@ -33,12 +35,14 @@ const RecipesCard = ({
       recipeCategories,
       recipeImage,
       recipeId,
+      recipeDes,
+      recipeSteps,
       kcalNum,
     });
   };
 
   const {user, token} = useLoginContext();
-  
+
   const handleSavePress = async () => {
     try {
       if (isSaved) {
@@ -53,9 +57,7 @@ const RecipesCard = ({
           },
         );
         console.log(response);
-      }
-     
-      else {
+      } else {
         // Add to favorites
         const response = await axios.patch(
           'https://master-piece.onrender.com/api/user/add-favorite',
@@ -76,7 +78,7 @@ const RecipesCard = ({
   };
   if (screenName === 1) {
     imageSource = require('../assets/Heart.png');
-  } 
+  }
   return (
     <View style={[styles.container, {width: cardWidth, height: cardHeight}]}>
       <TouchableOpacity
@@ -94,8 +96,8 @@ const RecipesCard = ({
           style={styles.heart}
           source={
             isSaved
-              ? require('../assets/Heart.png') 
-              : require('../assets/HeartLight.png') 
+              ? require('../assets/Heart.png')
+              : require('../assets/HeartLight.png')
           }
         />
       </TouchableOpacity>
