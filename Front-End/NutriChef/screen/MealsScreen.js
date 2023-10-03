@@ -9,27 +9,27 @@ const MealsScreen = () => {
     <View style={styles.mainView}>
       <Text style={styles.mealHeader}>Breakfast</Text>
       <MealCard
-        txt={'Burger'}
-        image={require('../assets/burger.png')}
-        cal={132}
+        txt={'Croissant'}
+        image={require('../assets/Brackfastjpeg.jpeg')}
+        cal={376}
       />
       <Text style={styles.mealHeader}>Lunch</Text>
       <MealCard
         txt={'Burger'}
-        image={require('../assets/burger.png')}
-        cal={132}
+        image={require('../assets/newIBurgerjpeg.jpeg')}
+        cal={1172}
       />
       <Text style={styles.mealHeader}>Dinner</Text>
       <MealCard
-        txt={'Burger'}
-        image={require('../assets/burger.png')}
-        cal={132}
+        txt={'Beef Tacos'}
+        image={require('../assets/Dinner.jpeg')}
+        cal={863}
       />
       <Text style={styles.mealHeader}>Snack</Text>
       <MealCard
-        txt={'Burger'}
-        image={require('../assets/Snacks.png')}
-        cal={132}
+        txt={'Dray Fruits'}
+        image={require('../assets/SnackMeal.jpeg')}
+        cal={317}
       />
     </View>
   );

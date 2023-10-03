@@ -52,7 +52,7 @@ const SignUp = ({navigation}) => {
     // If there are no errors, proceed with signup
     if (Object.keys(newErrors).length === 0) {
       signUp(username, email, password);
-      navigation.navigate('home');
+      navigation.navigate('LogIn');
       // console.log(user);
       // console.log("***********************************************")
       // console.log(token)

@@ -23,23 +23,23 @@ const Home = () => {
   const CardData = [
     {
       id: 1,
-      title: 'Card 1',
-      content: `This is the content
-of Card 1`,
+      title: 'Arterial',
+      content: `Favorite recipe in our 
+application.`,
       backgroundColor: 'red',
     },
     {
       id: 2,
-      title: 'Card 2',
-      content: `This is the content
-of Card 1`,
+      title: 'Arterial',
+      content: `Track your daily 
+calories with NutriChif.`,
       backgroundColor: 'blue',
     },
     {
       id: 3,
-      title: 'Card 3',
-      content: `This is the content
-of Card 1`,
+      title: 'Arterial',
+      content: `Make your diet more 
+easy using NutriChif.`,
       backgroundColor: 'green',
     },
     // Add more card data with different background colors
@@ -64,7 +64,7 @@ of Card 1`,
   useEffect(() => {
     const delay = setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 700);
     return () => clearTimeout(delay);
   }, []);
   if (isLoading) {

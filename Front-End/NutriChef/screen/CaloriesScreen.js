@@ -7,11 +7,11 @@ import TotalInfo from '../components/TotalInfo';
 import MealCard from '../components/MealCard';
 
 const CaloriesScreen = ({navigation}) => {
-  const img = require('../assets/burger.png');
+  const img = require('../assets/newIBurgerjpeg.jpeg');
   return (
     <View style={styles.mainView}>
       <DateCard />
-      <TotalInfo calories={1234} protein={123} fat={123} carbs={123} />
+      <TotalInfo calories={2728} protein={280} fat={118} carbs={174} />
       <View style={styles.MealHeader}>
         <Text style={styles.meals}>Meals</Text>
         <Text

@@ -13,7 +13,7 @@ import {Color, FontSize} from '../GlobalStyles';
 const MealCard = ({image, txt, cal}) => {
   return (
     <TouchableOpacity style={styles.mainView}>
-      <Image source={image} />
+      <Image source={image} style={{width: 70, height: 70, borderRadius: 20}} />
       <View>
         <Text style={styles.txt}>{txt}</Text>
         <Text style={styles.cal}>{cal} Calories</Text>
